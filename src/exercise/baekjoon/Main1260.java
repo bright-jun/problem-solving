@@ -32,7 +32,7 @@ public class Main1260 {
 	}
 	
 	public static void main(String[] args) throws IOException {
-//		System.setIn(new FileInputStream("res/Baekjoon/1260.txt"));
+		System.setIn(new FileInputStream("res/Baekjoon/1260.txt"));
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st.nextToken());
