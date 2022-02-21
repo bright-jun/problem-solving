@@ -14,12 +14,15 @@ public class Solution1288 {
 			HashSet<int[]> hsRemove = new HashSet<int[]>();
 			for (int[] hsInterval : hs) {
 				if (isSameArray(hsInterval, addInterval)) { // hs == add
-					break top;
+					// next add Interval
+					continue top;
 				} else if (addInterval[0] <= hsInterval[0] && hsInterval[1] <= addInterval[1]) { // hs < add
+					// find all another hsInterval to remove
 					hsRemove.add(hsInterval);
 					continue;
 				} else if (hsInterval[0] <= addInterval[0] && addInterval[1] <= hsInterval[1]) { // add < hs
-					break top;
+					// next add Interval
+					continue top;
 				}
 			}
 			hs.add(addInterval);
