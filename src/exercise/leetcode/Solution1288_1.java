@@ -2,7 +2,12 @@ package exercise.leetcode;
 
 import java.util.HashSet;
 
-public class Solution1288 {
+public class Solution1288_1 {
+	/*
+	 * 1. HashMap
+	 * 2. Sort
+	 */
+	
 	public boolean isSameArray(int[] a1, int[] a2) {
 		return a1[0] == a2[0] && a1[1] == a2[1];
 	}
@@ -40,13 +45,13 @@ public class Solution1288 {
 	}
 
 	public static void main(String[] args) {
-		Solution1288 solution1288 = new Solution1288();
+		Solution1288_1 solution1288_1 = new Solution1288_1();
 
-		System.out.println(solution1288.removeCoveredIntervals(new int[][] { { 1, 4 }, { 3, 6 }, { 2, 8 } })); // 2
-		System.out.println(solution1288.removeCoveredIntervals(new int[][] { { 1, 4 }, { 2, 3 } })); // 1
-		System.out.println(solution1288.removeCoveredIntervals(
+		System.out.println(solution1288_1.removeCoveredIntervals(new int[][] { { 1, 4 }, { 3, 6 }, { 2, 8 } })); // 2
+		System.out.println(solution1288_1.removeCoveredIntervals(new int[][] { { 1, 4 }, { 2, 3 } })); // 1
+		System.out.println(solution1288_1.removeCoveredIntervals(
 				new int[][] { { 66672, 75156 }, { 59890, 65654 }, { 92950, 95965 }, { 9103, 31953 }, { 54869, 69855 },
 						{ 33272, 92693 }, { 52631, 65356 }, { 43332, 89722 }, { 4218, 57729 }, { 20993, 92876 } }));
-		System.out.println(solution1288.removeCoveredIntervals(new int[][] { { 3, 10 }, { 4, 10 }, { 5, 11 } })); // 2
+		System.out.println(solution1288_1.removeCoveredIntervals(new int[][] { { 3, 10 }, { 4, 10 }, { 5, 11 } })); // 2
 	}
 }
