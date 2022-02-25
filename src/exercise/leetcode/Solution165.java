@@ -9,17 +9,11 @@ public class Solution165 {
 
 		int[] revision1List = new int[revisionLength];
 		int[] revision2List = new int[revisionLength];
-		for (int i = 0; i < revisionLength; i++) {
-			try {
-				revision1List[i] = Integer.parseInt(revision1StrList[i]);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			try {
-				revision2List[i] = Integer.parseInt(revision2StrList[i]);
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+		for (int i = 0; i < revision1StrList.length; i++) {
+			revision1List[i] = Integer.parseInt(revision1StrList[i]);
+		}
+		for (int i = 0; i < revision2StrList.length; i++) {
+			revision2List[i] = Integer.parseInt(revision2StrList[i]);
 		}
 
 		for (int i = 0; i < revisionLength; i++) {
