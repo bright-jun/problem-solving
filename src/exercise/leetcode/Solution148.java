@@ -24,7 +24,7 @@ public class Solution148 {
 	 * 
 	 * Can you sort the linked list in O(n logn) time and O(1) memory (i.e. constant
 	 * space)?
-	 * 
+	 * -> mergesort with recursion
 	 */
 	public void swap(ListNode n1, ListNode n2) {
 		ListNode temp = n1.next;
