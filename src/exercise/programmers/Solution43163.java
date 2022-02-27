@@ -32,17 +32,20 @@ public class Solution43163 {
 		dq.add(begin);
 
 		while (dq.size() > 0) {
-			String beforeWord = dq.pop();
-			
-			for (String afterWord : WordCount.keySet()) {
-				if (changeable(beforeWord, afterWord)) {
-					if (count < WordCount.get(afterWord)) { // need search more
-						WordCount.put(afterWord, count);
-						dq.add(afterWord);
+			count++;
+			// depth search
+			for (int i = 0, dqSize = dq.size(); i < dqSize; i++) {
+				String beforeWord = dq.pop();
+				
+				for (String afterWord : WordCount.keySet()) {
+					if (changeable(beforeWord, afterWord)) {
+						if (count < WordCount.get(afterWord)) { // need search more
+							WordCount.put(afterWord, count);
+							dq.add(afterWord);
+						}
 					}
 				}
 			}
-			count++;
 		}
 		
 		int answer = WordCount.getOrDefault(target, Integer.MAX_VALUE);
