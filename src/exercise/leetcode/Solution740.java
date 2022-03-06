@@ -2,7 +2,7 @@ package exercise.leetcode;
 
 public class Solution740 {
 	public int deleteAndEarn(int[] nums) {
-		int[] count = new int[20001];
+		int[] count = new int[10001];
 
 		for (int num : nums) {
 			count[num]++;
@@ -10,16 +10,10 @@ public class Solution740 {
 
 		int ans = 0;
 		
-		int[][] dp = new int[20001][2];
+		int[][] dp = new int[10001][2];
 		
 		// dp
-		// 2 3 4 5
-		// o x
-		// o x x 
-		// o x o
-		// x o
-		// x x o < o x o
-		// o x or x o x
+		/*
 		dp[1][0] = 1 * 0;
 		dp[1][1] = 1 * count[1];
 		
@@ -27,15 +21,20 @@ public class Solution740 {
 		dp[2][0] = Math.max(dp[1][0], dp[1][1]) + 2 * 0;
 		// from x
 		dp[2][1] = dp[1][0] + 2 * count[2];
+		*/
 		
-		for (int i = 1; i < 20001; i++) {
+		for (int i = 1; i < 10001; i++) {
 			// from o, x
 			dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1]) + i * 0;
 			// from x
 			dp[i][1] = dp[i-1][0] + i * count[i];
 		}
 
-		return Math.max(dp[20000][0], dp[20000][1]);
+		// ? ? ? o
+		// ? ? o x
+		
+		
+		return Math.max(dp[10000][0], dp[10000][1]);
 	}
 
 	public static void main(String[] args) {
