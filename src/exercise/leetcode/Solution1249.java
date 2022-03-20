@@ -4,7 +4,10 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 public class Solution1249 {
-
+	/*
+	 * DFS Solution 2^(10^5)
+	 * need O(N) Solution
+	 * 
 	public static int AnswerFlag;
 	public static int AnswerN;
 	public static int N;
@@ -100,7 +103,13 @@ public class Solution1249 {
 
 		return AnswerString.trim();
 	}
+	*/
 
+	public String minRemoveToMakeValid(String s) {
+		
+		return null;
+	}
+	
 	public static void main(String[] args) {
 		Solution1249 solution1249 = new Solution1249();
 		System.out.println(solution1249.minRemoveToMakeValid("(leet(c)o)de"));
