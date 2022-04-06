@@ -68,6 +68,8 @@ public class Solution923_TLE {
 					DFS(n + 1, i, sum + now);
 					// reset
 					AnsHm.put(now, AnsHm.getOrDefault(now, 0) - 1);
+				} else {
+					break;
 				}
 			}
 		}
@@ -91,7 +93,7 @@ public class Solution923_TLE {
 			ArrHm.put(i, ArrHm.getOrDefault(i, 0) + 1);
 		}
 		KeyN = ArrHm.size();
-		KeyList = ArrHm.keySet().stream().sorted((o1, o2) -> o2.compareTo(o1)).collect(Collectors.toList());
+		KeyList = ArrHm.keySet().stream().sorted((o1, o2) -> o1.compareTo(o2)).collect(Collectors.toList());
 		AnsHm = new HashMap<Integer, Integer>();
 		KeyList.stream().forEach(key -> AnsHm.put(key, 0));
 		// make tuple
