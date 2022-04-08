@@ -14,7 +14,7 @@ public class Solution1 {
 		}
 		
 		for (int i = 0; i < nums.length; i++) {
-			hm.computeIfPresent(key, );
+//			hm.computeIfPresent(key, );
 		}
 		
 		return null;
