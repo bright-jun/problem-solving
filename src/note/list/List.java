@@ -17,19 +17,33 @@ public class List {
 		ArrayList arrayList = new ArrayList();
 		LinkedList linkedList = new LinkedList();
 
-		final long startAddAL = System.nanoTime();
+		final long startAddStartAL = System.nanoTime();
+		for (int i = 0; i < total; i++) {
+			arrayList.add(0, i);
+		}
+		final long endAddStartAL = System.nanoTime();
+		final long totalAddStartAL = endAddStartAL - startAddStartAL;
+
+		final long startAddStartLL = System.nanoTime();
+		for (int i = 0; i < total; i++) {
+			linkedList.add(0, i);
+		}
+		final long endAddStartLL = System.nanoTime();
+		final long totalAddStartLL = endAddStartLL - startAddStartLL;
+		
+		final long startAddEndAL = System.nanoTime();
 		for (int i = 0; i < total; i++) {
 			arrayList.add(i, i);
 		}
-		final long endAddAL = System.nanoTime();
-		final long totalAddAL = endAddAL - startAddAL;
+		final long endAddEndAL = System.nanoTime();
+		final long totalAddEndAL = endAddEndAL - startAddEndAL;
 
-		final long startAddLL = System.nanoTime();
+		final long startAddEndLL = System.nanoTime();
 		for (int i = 0; i < total; i++) {
 			linkedList.add(i, i);
 		}
-		final long endAddLL = System.nanoTime();
-		final long totalAddLL = endAddLL - startAddLL;
+		final long endAddEndLL = System.nanoTime();
+		final long totalAddEndLL = endAddEndLL - startAddEndLL;
 
 		final long startRemoveAL = System.nanoTime();
 		arrayList.remove(targetIndex);
@@ -41,11 +55,11 @@ public class List {
 		final long endRemoveLL = System.nanoTime();
 		final long totalRemoveLL = endRemoveLL - startRemoveLL;
 
-		System.out.printf("ArrayList\tadd\t\tremove\n");
-		System.out.printf("\t\t%s\t\t%s\n", totalAddAL, totalRemoveAL);
+		System.out.printf("ArrayList\taddStart\t\taddEnd\t\tremove\n");
+		System.out.printf("\t\t%s\t\t%s\t\t%s\n", totalAddStartAL, totalAddEndAL, totalRemoveAL);
 
-		System.out.printf("LinkedList\tadd\t\tremove\n");
-		System.out.printf("\t\t%s\t\t%s\n", totalAddLL, totalRemoveLL);
+		System.out.printf("LinkedList\taddStart\t\taddEnd\t\tremove\n");
+		System.out.printf("\t\t%s\t\t%s\t\t%s\n", totalAddStartLL, totalAddEndLL, totalRemoveLL);
 
 	}
 
