@@ -4,14 +4,16 @@ import exercise.leetcode.datastructure.TreeNode;
 
 public class Solution538 {
 	
-	public void rightInOrder(TreeNode root, int total) {
+	public static int total;
+	
+	public void rightInOrder(TreeNode root) {
 		if(root == null) {
 			return;
 		}
-		rightInOrder(root.right, total);
+		rightInOrder(root.right);
 		total += root.val;
 		root.val = total;
-		rightInOrder(root.left, total);
+		rightInOrder(root.left);
 	}
 	
     public TreeNode convertBST(TreeNode root) {
@@ -19,15 +21,9 @@ public class Solution538 {
     	// search Right -> Root -> Left
     	// ref https://leetcode.com/problems/convert-bst-to-greater-tree/discuss/1951757/Simple-easy-c%2B%2B-solution
     	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-        return null;
+    	total = 0;
+    	rightInOrder(root);
+        return root;
     }
     
     public static void main(String[] args) {
