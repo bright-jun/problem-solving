@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Solution1 {
+	/*
+	 * 2 <= nums.length <= 10^4
+	 * -10^9 <= nums[i] <= 10^9
+	 * -10^9 <= target <= 10^9
+	 * Only one valid answer exists.
+	 */
 	public int[] twoSum(int[] nums, int target) {
 		Map<Integer, Integer> hm = new HashMap<Integer, Integer>(); // (value, idx)
 		
@@ -14,7 +20,7 @@ public class Solution1 {
 		}
 		
 		for (int i = 0; i < nums.length; i++) {
-//			hm.computeIfPresent(key, );
+			
 		}
 		
 		return null;
