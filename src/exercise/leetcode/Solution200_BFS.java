@@ -3,7 +3,7 @@ package exercise.leetcode;
 import java.util.Deque;
 import java.util.LinkedList;
 
-public class Solution200 {
+public class Solution200_BFS {
 
 	public static int[][] Dir = new int[][] { { -1, 0 }, { 0, 1 }, { 1, 0 }, { 0, -1 } };
 	public static int R;
@@ -46,7 +46,7 @@ public class Solution200 {
 	}
 
 	public static void main(String[] args) {
-		Solution200 solution200 = new Solution200();
+		Solution200_BFS solution200 = new Solution200_BFS();
 
 		System.out.println(solution200.numIslands(new char[][] { { '1', '1', '1', '1', '0' },
 				{ '1', '1', '0', '1', '0' }, { '1', '1', '0', '0', '0' }, { '0', '0', '0', '0', '0' } }));
