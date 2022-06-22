@@ -22,11 +22,11 @@ public class Solution1268 {
 		for (String product : products) {
 			productList.add(product);
 		}
-		productList.sort((o1,o2) -> o1.compareTo(o2));
-		
+		productList.sort((o1, o2) -> o1.compareTo(o2));
+
 		for (int i = 0; i < searchWord.length(); i++) {
 			for (int j = 0; j < productList.size(); j++) {
-				if(productList.get(j).length() > i && productList.get(j).startsWith(searchWord.substring(0, i+1))) {
+				if (productList.get(j).length() > i && productList.get(j).startsWith(searchWord.substring(0, i + 1))) {
 					continue;
 				} else {
 					productList.remove(j);
@@ -36,10 +36,10 @@ public class Solution1268 {
 			List<String> searchList = new ArrayList<String>();
 			for (int j = 0; j < Math.min(3, productList.size()); j++) {
 				searchList.add(productList.get(j));
-			} 
+			}
 			ans.add(searchList);
 		}
-		
+
 		return ans;
 	}
 
