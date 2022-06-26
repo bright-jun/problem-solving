@@ -9,11 +9,11 @@ public class Solution1423 {
 	 */
 	public int maxScore(int[] cardPoints, int k) {
 		// 1, 2, 3, 4, 5, 6, 1
-		// O  O  O
-		//    O  O  O
-		//       O  O  O
-		//          O  O  O
-		//             O  O  O
+		// X  X  X  O  O  O  O
+		// O  X  X  X  O  O  O
+		// O  O  X  X  X  O  O
+		// O  O  O  X  X  X  O
+		// O  O  O  O  X  X  X
 		int wSize = cardPoints.length - k;
 		int sum = 0;
 		for (int i = 0; i < cardPoints.length; i++) {
