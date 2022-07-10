@@ -1,6 +1,11 @@
 package exercise.leetcode;
 
 public class Solution746 {
+	
+	/*
+	 * 2 <= cost.length <= 1000
+	 * 0 <= cost[i] <= 999
+	 */
 	public int minCostClimbingStairs(int[] cost) {
 
 		cost[1] = Math.min(cost[0] + cost[1], 0 + cost[1]);
