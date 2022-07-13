@@ -1,13 +1,40 @@
 package exercise.leetcode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import exercise.leetcode.datastructure.TreeNode;
 
 public class Solution102 {
 
+	/*
+	 * The number of nodes in the tree is in the range [0, 2000]. -1000 <= Node.val
+	 * <= 1000
+	 */
 	public List<List<Integer>> levelOrder(TreeNode root) {
-		return null;
+		
+		List<List<Integer>> answer = new ArrayList<List<Integer>>();
+		int level = 1;
+		inOrderLevel(root, answer, level);
+
+		return answer;
+	}
+
+	public void inOrderLevel(TreeNode treeNode, List<List<Integer>> answer, int level) {
+
+		if (treeNode == null) {
+			return;
+		}
+
+		// in-order traversal + depth
+		if (answer.size() >= level) {
+			answer.get(level - 1).add(treeNode.val);
+		} else {
+			answer.add(new ArrayList<Integer>());
+			answer.get(level - 1).add(treeNode.val);
+		}
+		inOrderLevel(treeNode.left, answer, level + 1);
+		inOrderLevel(treeNode.right, answer, level + 1);
 	}
 
 	public static void main(String[] args) {
