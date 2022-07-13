@@ -15,26 +15,26 @@ public class Solution102 {
 		
 		List<List<Integer>> answer = new ArrayList<List<Integer>>();
 		int level = 1;
-		inOrderLevel(root, answer, level);
+		preOrderLevel(root, answer, level);
 
 		return answer;
 	}
 
-	public void inOrderLevel(TreeNode treeNode, List<List<Integer>> answer, int level) {
+	public void preOrderLevel(TreeNode treeNode, List<List<Integer>> answer, int level) {
 
 		if (treeNode == null) {
 			return;
 		}
 
-		// in-order traversal + depth
+		// pre-order traversal + depth
 		if (answer.size() >= level) {
 			answer.get(level - 1).add(treeNode.val);
 		} else {
 			answer.add(new ArrayList<Integer>());
 			answer.get(level - 1).add(treeNode.val);
 		}
-		inOrderLevel(treeNode.left, answer, level + 1);
-		inOrderLevel(treeNode.right, answer, level + 1);
+		preOrderLevel(treeNode.left, answer, level + 1);
+		preOrderLevel(treeNode.right, answer, level + 1);
 	}
 
 	public static void main(String[] args) {
