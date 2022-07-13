@@ -16,6 +16,16 @@ public class Solution102 {
 		List<List<Integer>> answer = new ArrayList<List<Integer>>();
 		int level = 1;
 		preOrderLevel(root, answer, level);
+		/*
+		 * there are tradeoffs,
+		 * 	- for very 'lean' tree (most non-leaf node have only one child)
+		 * 		- Traversal DFS appoach consume O(n) memory - depth
+		 * 		- BFS approach with queue cost almost constant memory - width
+		 * 	- for near complete tree (most non-leaf node have two child)
+		 * 		- Traversal DFS appoach cost O(log(n)) memory - depth
+		 * 		- BFS approach cost O(n) memory - width
+		 * [https://leetcode.com/problems/binary-tree-level-order-traversal/discuss/33468/One-of-C++-solutions-(preorder)/32201]
+		 */
 
 		return answer;
 	}
@@ -26,7 +36,7 @@ public class Solution102 {
 			return;
 		}
 
-		// pre-order traversal + depth
+		// preorder traversal + depth
 		if (answer.size() >= level) {
 			answer.get(level - 1).add(treeNode.val);
 		} else {
