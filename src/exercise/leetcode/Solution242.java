@@ -2,8 +2,8 @@ package exercise.leetcode;
 
 public class Solution242 {
 	/*
-	 * 1 <= s.length, t.length <= 5 * 104 s and t consist of lowercase English
-	 * letters.
+	 * 1 <= s.length, t.length <= 5 * 10^4
+	 * s and t consist of lowercase English letters.
 	 */
 	public boolean isAnagram(String s, String t) {
 
