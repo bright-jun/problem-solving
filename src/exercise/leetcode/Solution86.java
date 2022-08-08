@@ -20,6 +20,7 @@ public class Solution86 {
 		ListNode nowNode = head;
 		ListNode beforeNode = null;
 
+		// fix last check
 		while (nowNode.next != null) {
 			if (nowNode.val >= x) {
 				// pop
