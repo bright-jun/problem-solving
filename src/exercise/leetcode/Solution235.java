@@ -11,6 +11,8 @@ public class Solution235 {
 	 * p and q will exist in the BST.
 	 */
 	public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+		// record path while BST search
+		// find lowestCommonAncestor
 		return null;
 	}
 
@@ -18,9 +20,9 @@ public class Solution235 {
 		Solution235 solution235 = new Solution235();
 		TreeNode answer;
 		TreeNode root = TreeNode.generate(new Integer[] { 6, 2, 8, 0, 4, 7, 9, null, null, 3, 5 });
-		answer = solution235.lowestCommonAncestor(root, root.left, root.right);
+		answer = solution235.lowestCommonAncestor(root, root.left, root.right); // 2 8 -> 6
 		root = TreeNode.generate(new Integer[] { 6, 2, 8, 0, 4, 7, 9, null, null, 3, 5 });
-		answer = solution235.lowestCommonAncestor(root, root.left, root.left.right);
+		answer = solution235.lowestCommonAncestor(root, root.left, root.left.right); // 2 1 -> 1 
 		
 		return;
 	}
