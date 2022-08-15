@@ -1,8 +1,5 @@
 package exercise.leetcode;
 
-import java.util.LinkedList;
-import java.util.List;
-
 import exercise.leetcode.datastructure.TreeNode;
 
 public class Solution235 {
