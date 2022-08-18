@@ -1,9 +1,20 @@
 package exercise.leetcode;
 
 public class Solution70 {
-
+	/*
+	 * 1 <= n <= 45
+	 */
 	public int climbStairs(int n) {
-		return -1;
+
+		int[] answer = new int[46];
+		answer[1] = 1;
+		answer[2] = 2;
+
+		for (int i = 3; i <= n; i++) {
+			answer[i] = answer[i - 1] + answer[i - 2];
+		}
+
+		return answer[n];
 	}
 
 	public static void main(String[] args) {
