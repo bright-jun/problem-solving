@@ -7,18 +7,32 @@ public class Solution11 {
 	 * 0 <= height[i] <= 10^4
 	 */
 	public int maxArea(int[] height) {
-		
+
 		int answer = 0;
 		// O(n^2) ~ TLE
-		for (int i = 0; i < height.length; i++) {
-			for (int j = i + 1; j < height.length; j++) {
-				answer = Math.max(answer, getArea(i, j, height));
+//		for (int i = 0; i < height.length; i++) {
+//			for (int j = i + 1; j < height.length; j++) {
+//				answer = Math.max(answer, getArea(i, j, height));
+//			}
+//		}
+
+		// greedy O(N)
+		int left = 0;
+		int right = height.length - 1;
+
+		while (left < right) {
+			answer = Math.max(answer, getArea(left, right, height));
+			if (height[left] < height[right]) { // no more need to move right to left
+				left++;
+			} else if (height[left] > height[right]) { // no more need to move left to right
+				right--;
+			} else { // either way is same, but need to check
+				left++;
 			}
 		}
-
 		return answer;
 	}
-	
+
 	public int getArea(int left, int right, int[] height) {
 		return (right - left) * Math.min(height[left], height[right]);
 	}
