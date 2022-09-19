@@ -17,6 +17,11 @@ public class Solution42 {
 	 */
 	public int trap(int[] height) {
 		
+		int unfilledTrap = 0;
+		for (int i = 0; i < height.length; i++) {
+			unfilledTrap += height[i];
+		}
+		
 		int beforeHeight = -1;
 		
 		for (int i = 0; i < height.length; i++) {
@@ -29,7 +34,12 @@ public class Solution42 {
 			}
 		}
 		
-		return -1;
+		int filledTrap = 0;
+		for (int i = 0; i < height.length; i++) {
+			filledTrap += height[i];
+		}
+		
+		return filledTrap - unfilledTrap;
 	}
 
 	public static void main(String[] args) {
