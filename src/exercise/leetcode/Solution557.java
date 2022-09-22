@@ -14,11 +14,28 @@ public class Solution557 {
 		String[] words = s.split(" ");
 
 		for (String word : words) {
+			// swap using StringBuilder
+			/*
 			StringBuilder sb = new StringBuilder();
 			for (char c : word.toCharArray()) {
 				sb.insert(0, c);
 			}
 			answer.append(sb);
+			*/
+			// swap using two pointer
+			char[] cArr = word.toCharArray();
+			int startIdx = 0;
+			int endIdx = cArr.length - 1;
+			while (startIdx < endIdx) {
+				// swap
+				char temp = cArr[startIdx];
+				cArr[startIdx] = cArr[endIdx];
+				cArr[endIdx] = temp;
+				// move pointer
+				startIdx++;
+				endIdx--;
+			}
+			answer.append(new String(cArr));
 			answer.append(" ");
 		}
 
