@@ -10,16 +10,28 @@ public class Solution557 {
 	 */
 	public String reverseWords(String s) {
 
-		return null;
+		StringBuilder answer = new StringBuilder();
+		String[] words = s.split(" ");
+
+		for (String word : words) {
+			StringBuilder sb = new StringBuilder();
+			for (char c : word.toCharArray()) {
+				sb.insert(0, c);
+			}
+			answer.append(sb);
+			answer.append(" ");
+		}
+
+		return answer.deleteCharAt(answer.length() - 1).toString();
 	}
 
-public static void main(String[] args) {
-	Solution557 solution557 = new Solution557();
-	String answer;
+	public static void main(String[] args) {
+		Solution557 solution557 = new Solution557();
+		String answer;
 
-	answer = solution557.reverseWords("Let's take LeetCode contest");
-	answer = solution557.reverseWords("God Ding");
-	
-	return;
-}
+		answer = solution557.reverseWords("Let's take LeetCode contest");
+		answer = solution557.reverseWords("God Ding");
+
+		return;
+	}
 }
