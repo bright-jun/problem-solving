@@ -2,6 +2,7 @@ package exercise.leetcode.datastructure;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -53,9 +54,18 @@ public class N_Ary_Node {
 				adjacencyList.add(element);
 			}
 		}
+		if (adjacencyList != null) {
+			adjacencyLists.add(adjacencyList);
+		}
 
-		List<N_Ary_Node> n_Ary_Nodes = Stream.iterate(0, n -> n + 1).limit(adjacencyLists.size())
-				.map(N_Ary_Node::integerToN_Ary_Node).collect(Collectors.toList());
+		List<N_Ary_Node> n_Ary_Nodes = new LinkedList<N_Ary_Node>();
+		for (Integer element : elements) {
+			if(element == null) {
+				continue;
+			}
+			N_Ary_Node n_ary_Node = integerToN_Ary_Node(element);
+			n_Ary_Nodes.add(n_ary_Node);
+		}
 
 		// FIXME 1 depth only valid
 		// N_Ary_Node.generate(new Integer[] { 1, null, 3, 2, 4, null, 5, 6 });
@@ -82,5 +92,11 @@ public class N_Ary_Node {
 		} else {
 			return new N_Ary_Node(element, new ArrayList<N_Ary_Node>());
 		}
+	}
+
+	public static void main(String[] args) {
+		// test
+		N_Ary_Node root = N_Ary_Node.generate(new Integer[] { 1, null, 3, 2, 4, null, 5, 6 });
+		return;
 	}
 }
