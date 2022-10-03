@@ -1,12 +1,10 @@
 package exercise.leetcode.datastructure;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class N_Ary_Node {
 	public int val;
@@ -40,7 +38,7 @@ public class N_Ary_Node {
 			return null;
 		}
 
-		List<List<Integer>> adjacencyLists = new ArrayList<List<Integer>>();
+		Queue<List<Integer>> adjacencyLists = new LinkedList<List<Integer>>();
 		List<Integer> adjacencyList = null;
 
 		for (Integer element : elements) {
@@ -58,25 +56,24 @@ public class N_Ary_Node {
 			adjacencyLists.add(adjacencyList);
 		}
 
-		List<N_Ary_Node> n_Ary_Nodes = new LinkedList<N_Ary_Node>();
-		for (Integer element : elements) {
-			if(element == null) {
-				continue;
+		N_Ary_Node root = new N_Ary_Node();
+		N_Ary_Node now;
+		
+		Queue<N_Ary_Node> childs = new LinkedList<N_Ary_Node>();
+		childs.add(root);
+		
+		while(!childs.isEmpty() && !adjacencyLists.isEmpty()) {
+			now = childs.poll();
+			List<Integer> children = adjacencyLists.poll();
+			if (children != null) {
+				now.children = children.stream()
+						.map(N_Ary_Node::integerToN_Ary_Node)
+						.collect(Collectors.toList());
+				childs.addAll(now.children);
 			}
-			N_Ary_Node n_ary_Node = integerToN_Ary_Node(element);
-			n_Ary_Nodes.add(n_ary_Node);
 		}
 
-		// FIXME 1 depth only valid
-		// N_Ary_Node.generate(new Integer[] { 1, null, 3, 2, 4, null, 5, 6 });
-		for (int i = 1; i < adjacencyLists.size(); i++) {
-			List<N_Ary_Node> adjacencyN_Ary_NodeList = adjacencyLists.get(i).stream()
-					.map(N_Ary_Node::integerToN_Ary_Node)
-					.collect(Collectors.toList());
-			n_Ary_Nodes.get(i).children.addAll(adjacencyN_Ary_NodeList);
-		}
-
-		return n_Ary_Nodes.get(1);
+		return root.children.get(0);
 	}
 
 	/**
@@ -96,7 +93,10 @@ public class N_Ary_Node {
 
 	public static void main(String[] args) {
 		// test
-		N_Ary_Node root = N_Ary_Node.generate(new Integer[] { 1, null, 3, 2, 4, null, 5, 6 });
+		N_Ary_Node root;
+		root = N_Ary_Node.generate(new Integer[] { 1, null, 3, 2, 4, null, 5, 6 });
+		root = N_Ary_Node.generate(new Integer[] { 1, null, 2, 3, 4, 5, null, null, 6, 7, null, 8, null, 9, 10, null,
+				null, 11, null, 12, null, 13, null, null, 14 });
 		return;
 	}
 }
