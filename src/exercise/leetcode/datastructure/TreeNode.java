@@ -1,7 +1,9 @@
 package exercise.leetcode.datastructure;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.stream.Collectors;
 
 public class TreeNode {
@@ -30,46 +32,35 @@ public class TreeNode {
      * @return the tree node
      * @author Myungjun Kim
      */
-    public static TreeNode generate(Integer[] elements) {
+	public static TreeNode generate(Integer[] elements) {
 
-        if (elements.length == 0) {
-            return null;
-        }
+		if (elements.length == 0) {
+			return null;
+		}
 
-        List<TreeNode> treeNodes = Arrays.stream(elements)
-            .map(TreeNode::integerToTreeNode)
-            .collect(Collectors.toList());
+		Queue<TreeNode> treeNodes = new LinkedList<TreeNode>();
+		for (Integer element : elements) {
+			treeNodes.add(integerToTreeNode(element));
+		}
+		Queue<TreeNode> parents = new LinkedList<TreeNode>();
 
-        /*
-        0.left  <- 1
-		0.right <- 2
+		TreeNode root = treeNodes.poll();
+		parents.add(root);
+		TreeNode now;
 
-		1.left  <- 3
-		1.right <- 4
-		2.left  <- 5
-		2.right <- 6
+		while (!parents.isEmpty()) {
+			now = parents.poll();
+			if (now == null) {
+				continue;
+			}
+			now.left = treeNodes.poll();
+			now.right = treeNodes.poll();
+			parents.add(now.left);
+			parents.add(now.right);
+		}
 
-		3.left  <- 7
-		3.right <- 8
-		4.left  <- 9
-		4.right <- 10
-		5.left  <- 11
-		5.right <- 12
-		6.left  <- 13
-		6.right <- 14
-         */
-        for (int i = 1; i < treeNodes.size(); i++) {
-            if (treeNodes.get(i) != null) {
-                if (i % 2 == 0) {
-                    treeNodes.get((i - 1) / 2).right = treeNodes.get(i);
-                } else {
-                    treeNodes.get((i - 1) / 2).left = treeNodes.get(i);
-                }
-            }
-        }
-
-        return treeNodes.get(0);
-    }
+		return root;
+	}
 
 
     /**
@@ -83,7 +74,8 @@ public class TreeNode {
         if (element == null) {
             return null;
         } else {
-            return new TreeNode(element);
+
+        	return new TreeNode(element);
         }
     }
 }
