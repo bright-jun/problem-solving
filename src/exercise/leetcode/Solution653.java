@@ -7,7 +7,6 @@ import java.util.List;
 import exercise.leetcode.datastructure.TreeNode;
 
 public class Solution653 {
-	public static boolean Answer;
 	/*
 	 * The number of nodes in the tree is in the range [1, 10^4].
 	 * -10^4 <= Node.val <= 10^4
@@ -16,51 +15,69 @@ public class Solution653 {
 	 */
 	public boolean findTarget(TreeNode root, int k) {
 		List<Integer> list = new LinkedList<Integer>();
-		// Improve using hashMap
-		HashSet<Integer> hs = new HashSet<Integer>();
-		Answer = false;
-		// inorder search -> sort in O(N)
-		search(root, list, hs, k);
 
-		/*
-		int head = 0;
-		int tail = list.size() - 1;
+		// Improve using TreeNode ref
+		TreeNode head;
+		{
+			TreeNode now = root;
+			while (now.left != null) {
+				now = now.left;
+			}
+			head = now;
+		}
+		TreeNode tail;
+		{
+			TreeNode now = root;
+			while (now.right != null) {
+				now = now.right;
+			}
+			tail = now;
+		}
 
-		while (head < tail) {
-			int sum = list.get(head) + list.get(tail);
+		while (head.val < tail.val) {
+			int sum = head.val + tail.val;
 			if (sum < k) {
-				head++;
+				head = getSuccessor(root, head);
 			}
 			if (sum == k) {
 				return true;
 			}
 			if (sum > k) {
-				tail--;
+				tail = getPredecessor(root, tail);
 			}
 		}
-		*/
-		
-		return Answer;
+
+		return false;
 	}
 
-	public void search(TreeNode now, List<Integer> list, HashSet<Integer> hs, int k) {
-		if (Answer) {
-			return;
+	private TreeNode getSuccessor(TreeNode root, TreeNode target) {
+		TreeNode successor = null;
+		TreeNode now = root;
+		while (now != null) {
+			if (now.val < target.val) {
+				now = now.right;
+			}
+			if (now.val > target.val) {
+				successor = now;
+				now = now.left;
+			}
 		}
+		return successor;
+	}
 
-		if (now == null) {
-			return;
+	private TreeNode getPredecessor(TreeNode root, TreeNode target) {
+		TreeNode predecessor = null;
+		TreeNode now = root;
+		while (now != null) {
+			if (now.val < target.val) {
+				predecessor = now;
+				now = now.right;
+			}
+			if (now.val > target.val) {
+				now = now.left;
+			}
 		}
-		// inorder search -> sort in O(N)
-		search(now.left, list, hs, k);
-		list.add(now.val);
-		if (hs.contains(k - now.val)) {
-			Answer = true;
-			return;
-		} else {
-			hs.add(now.val);
-		}
-		search(now.right, list, hs, k);
+		return predecessor;
 	}
 
 	public static void main(String[] args) {
