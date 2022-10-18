@@ -15,7 +15,7 @@ public class Solution38 {
 			return Memoization[n];
 		}
 
-		String countAndSay = "";
+		StringBuilder sb = new StringBuilder();
 		String before = countAndSay(n - 1);
 		int count = 1;
 		char value = '*';
@@ -24,7 +24,7 @@ public class Solution38 {
 			if (value != c) {
 				// except first case
 				if (value != '*') {
-					countAndSay += Integer.toString(count) + value;
+					sb.append(Integer.toString(count) + value);
 				}
 				value = c;
 				count = 1;
@@ -32,9 +32,9 @@ public class Solution38 {
 				count++;
 			}
 		}
-		countAndSay += Integer.toString(count) + value;
+		sb.append(Integer.toString(count) + value);
 
-		Memoization[n] = countAndSay;
+		Memoization[n] = sb.toString();
 		return Memoization[n];
 	}
 
