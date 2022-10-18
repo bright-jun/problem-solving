@@ -1,12 +1,18 @@
 package exercise.leetcode;
 
 public class Solution38 {
+	public static String[] Memoization;
 	/*
 	 * 1 <= n <= 30
 	 */
 	public String countAndSay(int n) {
+		Memoization = new String[31];
 		if (n == 1) {
 			return "1";
+		}
+
+		if (Memoization[n] != null) {
+			return Memoization[n];
 		}
 
 		String countAndSay = "";
@@ -28,7 +34,8 @@ public class Solution38 {
 		}
 		countAndSay += Integer.toString(count) + value;
 
-		return countAndSay;
+		Memoization[n] = countAndSay;
+		return Memoization[n];
 	}
 
 	public static void main(String[] args) {
