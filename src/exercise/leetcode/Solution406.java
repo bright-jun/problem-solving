@@ -16,23 +16,23 @@ public class Solution406 {
 
 		int n = people.length;
 
-		HashMap<Integer, Integer> cntHm = new HashMap<Integer, Integer>();
+		// HashMap<Integer, Integer> cntHm = new HashMap<Integer, Integer>();
 
 		ArrayList<int[]> tempAl = new ArrayList<int[]>();
 		ArrayList<int[]> answerAl = new ArrayList<int[]>();
 		for (int[] p : people) {
 			tempAl.add(p);
 		}
-
 		// O(NlogN)
 		tempAl.sort((o1, o2) -> {
 			if (o1[0] != o2[0]) {
 				return Integer.valueOf(o1[0]).compareTo(Integer.valueOf(o2[0]));
 			} else {
-				return Integer.valueOf(o1[1]).compareTo(Integer.valueOf(o2[1]));
+				return Integer.valueOf(o2[1]).compareTo(Integer.valueOf(o1[1]));
 			}
 		});
 
+		/*
 		// O(N^2) <= 4*10^6
 		for (int i = 0; i < n; i++) {
 			for (int[] a : tempAl) {
@@ -53,11 +53,11 @@ public class Solution406 {
 				}
 			}
 		}
-
+		*/
 		// O(N)
 		int[][] answer = new int[n][2];
 		for (int i = 0; i < n; i++) {
-			answer[i] = answerAl.get(i);
+			answer[i] = tempAl.get(i);
 		}
 
 		return answer;
