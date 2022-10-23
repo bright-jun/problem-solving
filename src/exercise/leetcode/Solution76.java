@@ -19,44 +19,52 @@ public class Solution76 {
 		// [start, end)
 		int start = 0;
 		int end = 0;
-		String tempAnswer = s;
+		String tempAnswer = null;
 		while (end < s.length()) {
 			// move end till match subset
-			while (!sameState(windowState, answerState)) {
+			while (end < s.length() && !sameState(windowState, answerState)) {
 				// push
 				end++;
-				// move
-				windowState[s.charAt(end) - 'A']++;
-
-				if (end == s.length()) {
-					break;
-				}
+				// move & change state
+				windowState[s.charAt(end - 1) - 'A']++;
 			}
-			// match subset
-			if (tempAnswer.length() > s.substring(start, end).length()) {
-				tempAnswer = s.substring(start, end);
+
+			if (sameState(windowState, answerState)) {
+				// match subset
+				if (tempAnswer == null) {
+					tempAnswer = s.substring(start, end);
+				} else {
+					if (tempAnswer.length() > s.substring(start, end).length()) {
+						tempAnswer = s.substring(start, end);
+					}
+				}
 			}
 
 			// move start till unmatch(next subset letter) subset
-			while (t.indexOf(s.charAt(start)) < 0) {
-				// pop
+			// FIXME find till min case if end == s.length()
+ 			while (start < end) {
+				// move & change state
 				windowState[s.charAt(start) - 'A']--;
-				// move
+				// pop
 				start++;
+				if (!(start < end)) {
+					break;
+				}
+				if (t.indexOf(s.charAt(start - 1)) > 0) {
+					break;
+				}
 			}
 		}
 
-		if (tempAnswer.equals(s)) {
-			return "";
-		} else {
-			return tempAnswer;
-		}
+		return tempAnswer;
 	}
 
-	public boolean sameState(int[] a, int[] b) {
-		for (int i = 0; i < a.length; i++) {
-			if (a[i] != b[i]) {
-				return false;
+	public boolean sameState(int[] s, int[] t) {
+		for (int i = 0; i < s.length; i++) {
+			if (t[i] > 0) {
+				if (s[i] != t[i]) {
+					return false;
+				}
 			}
 		}
 		return true;
@@ -65,7 +73,7 @@ public class Solution76 {
 	public static void main(String[] args) {
 		Solution76 solution76 = new Solution76();
 		String answer;
-//		answer = solution76.minWindow("ADOBECODEBANC", "ABC");
+		answer = solution76.minWindow("ADOBECODEBANC", "ABC");
 		answer = solution76.minWindow("a", "a");
 		answer = solution76.minWindow("a", "aa");
 		return;
