@@ -15,21 +15,15 @@ public class Solution2244 {
 			hm.put(task, hm.getOrDefault(task, 0) + 1);
 		}
 
-		for (Integer key : hm.keySet()) {
-			int count = hm.get(key);
+		for (Map.Entry<Integer, Integer> entry : hm.entrySet()) {
+			int count = entry.getValue();
 			if (count == 1) {
 				return -1;
 			}
-			switch (count % 3) {
-			case 0:
+			if (count % 3 == 0) {
 				answer += count / 3;
-				break;
-			case 1:
+			} else {
 				answer += count / 3 + 1;
-				break;
-			case 2:
-				answer += count / 3 + 1;
-				break;
 			}
 		}
 
