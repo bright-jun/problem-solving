@@ -3,6 +3,7 @@ package exercise.leetcode;
 import exercise.leetcode.datastructure.TreeNode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 public class Solution94 {
     /**
@@ -13,7 +14,7 @@ public class Solution94 {
      */
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> answer = new ArrayList<>();
-        inorderTraverseRecursively(root, answer);
+        inorderTraverseIteratively(root, answer);
         return answer;
     }
 
@@ -31,6 +32,26 @@ public class Solution94 {
         list.add(root.val);
         // right
         inorderTraverseRecursively(root.right, list);
+    }
+
+    /**
+     * Time complexity : O(N)
+     * Space complexity: O(H), ⌈log(N+1)⌉ - 1 <= H(= height of binary tree) <= N - 1
+     */
+    public void inorderTraverseIteratively(TreeNode root, List<Integer> list) {
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode current = root;
+        while (current != null || !stack.isEmpty()) {
+            while (current != null) {
+                // move to leftmost
+                stack.push(current);
+                current = current.left;
+            }
+            current = stack.pop();
+            list.add(current.val);
+            // if current has right node, move to leftmost
+            current = current.right;
+        }
     }
 
     public static void main(String[] args) {
