@@ -1,5 +1,7 @@
 package exercise.leetcode;
 
+import java.util.LinkedList;
+
 public class Solution926 {
 	/*
 	 * 1 <= s.length <= 10^5
@@ -59,17 +61,50 @@ public class Solution926 {
 		  * 0007060504030200
 		  *                                           
 		  * -> represent as array: [7,6,5,4,3,2]
-		  * -> 7 or count(6)
+		  * -> 7 or count(6) -> 6
 		  *              
   		  * 00010100000101010
 		  * 00090800000302010
 		  *                                           
 		  * -> represent as array: [9,8,3,2,1]
-		  * -> 9 or count(5)
-		  *    -> 9 flip + 8 or count(4)
-		  *       -> 9,8 flip + 3 or count(3) .. same
+		  * -> 9 or count(5) -> 5
+		  * 
+		  * 000101010101011110
+		  * 000605040302011110
+		  * 
+		  * -> represent as array: [6,5,4,3,2,1,1,1,1]
+		  * -> 6 or count(9) -> 6
+		  * 
+		  * 10011111110010111011
+		  * 60044444440020111000
+		  * 
+		  * -> represent as array: [5,4,4,4,4,4,4,4,2,1,1,1]
+		  * -> 6 or count(12)
+		  * -> 6 can be flipped
+		  *    -> 6 flip + count(11) || 6,4 flip + count(10)
 		  */
-		return -1;
+		LinkedList<Integer> representList = new LinkedList<Integer>();
+		char[] charArray = s.toCharArray();
+		int zeroCount = 0;
+		for (int i = charArray.length - 1; i >= 0; i--) {
+			if (charArray[i] == '0') {
+				zeroCount++;
+			} else {
+				if (zeroCount > 0) {
+					representList.addFirst(zeroCount);
+				}
+			}
+		}
+		int size = representList.size();
+		int answer = size;
+
+		for (int i = 0; i < representList.size() - 1; i++) {
+			// flip and keep rest vs keep rest
+			int nowMin = Math.min((i + 1) + representList.get(i + 1), i + representList.get(i));
+			answer = Math.min(answer, nowMin);
+		}
+
+		return answer;
 	}
 
 	public static void main(String[] args) {
@@ -82,5 +117,8 @@ public class Solution926 {
 		answer = solution926.minFlipsMonoIncr("00010100000101010"); // 5
 		answer = solution926.minFlipsMonoIncr("000101010101010"); // 6
 		answer = solution926.minFlipsMonoIncr("0001010101010100"); // 6
+		answer = solution926.minFlipsMonoIncr("0101100011"); // 3
+		answer = solution926.minFlipsMonoIncr("10011111110010111011"); // 5
+		// TLE
 	}
 }
