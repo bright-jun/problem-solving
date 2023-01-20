@@ -1,5 +1,6 @@
 package exercise.leetcode;
 
+import java.util.Deque;
 import java.util.LinkedList;
 
 public class Solution926 {
@@ -83,7 +84,7 @@ public class Solution926 {
 		  * -> 6 can be flipped
 		  *    -> 6 flip + count(11) || 6,4 flip + count(10)
 		  */
-		LinkedList<Integer> representList = new LinkedList<Integer>();
+		Deque<Integer> representList = new LinkedList<Integer>();
 		char[] charArray = s.toCharArray();
 		int zeroCount = 0;
 		for (int i = charArray.length - 1; i >= 0; i--) {
@@ -95,13 +96,16 @@ public class Solution926 {
 				}
 			}
 		}
+		
 		int size = representList.size();
-		int answer = size;
-
-		for (int i = 0; i < representList.size() - 1; i++) {
-			// flip and keep rest vs keep rest
-			int nowMin = Math.min((i + 1) + representList.get(i + 1), i + representList.get(i));
-			answer = Math.min(answer, nowMin);
+		if (size == 0) {
+			return 0;
+		}
+		// all 1 vs all 0 
+		int answer = Math.min(representList.pollFirst(), size);
+		for (int i = 0; i < size - 1 ; i++) {
+			// make 1 rest vs flip and make 1 rest 
+			answer = Math.min(answer, (i + 1) + representList.pollFirst());
 		}
 
 		return answer;
@@ -120,5 +124,6 @@ public class Solution926 {
 		answer = solution926.minFlipsMonoIncr("0101100011"); // 3
 		answer = solution926.minFlipsMonoIncr("10011111110010111011"); // 5
 		// TLE
+		// LinkedList -> Deque
 	}
 }
