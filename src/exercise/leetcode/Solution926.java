@@ -111,18 +111,36 @@ public class Solution926 {
 		return answer;
 	}
 
+	public int minFlipsMonoIncrSol1(String s) {
+		int zeroCount = 0;
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == '0') {
+				zeroCount++;
+			}
+		}
+		int answer = zeroCount;
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == '0') {
+				answer = Math.min(answer, --zeroCount);
+			} else {
+				zeroCount++;
+			}
+		}
+		return answer;
+	}
+
 	public static void main(String[] args) {
 		Solution926 solution926 = new Solution926();
 		int answer;
-		answer = solution926.minFlipsMonoIncr("00110"); // 1
-		answer = solution926.minFlipsMonoIncr("010110"); // 2
-		answer = solution926.minFlipsMonoIncr("00011000"); // 2
-		answer = solution926.minFlipsMonoIncr("10000000"); // 1
-		answer = solution926.minFlipsMonoIncr("00010100000101010"); // 5
-		answer = solution926.minFlipsMonoIncr("000101010101010"); // 6
-		answer = solution926.minFlipsMonoIncr("0001010101010100"); // 6
-		answer = solution926.minFlipsMonoIncr("0101100011"); // 3
-		answer = solution926.minFlipsMonoIncr("10011111110010111011"); // 5
+		answer = solution926.minFlipsMonoIncrSol1("00110"); // 1
+		answer = solution926.minFlipsMonoIncrSol1("010110"); // 2
+		answer = solution926.minFlipsMonoIncrSol1("00011000"); // 2
+		answer = solution926.minFlipsMonoIncrSol1("10000000"); // 1
+		answer = solution926.minFlipsMonoIncrSol1("00010100000101010"); // 5
+		answer = solution926.minFlipsMonoIncrSol1("000101010101010"); // 6
+		answer = solution926.minFlipsMonoIncrSol1("0001010101010100"); // 6
+		answer = solution926.minFlipsMonoIncrSol1("0101100011"); // 3
+		answer = solution926.minFlipsMonoIncrSol1("10011111110010111011"); // 5
 		// TLE
 		// LinkedList -> Deque
 	}
