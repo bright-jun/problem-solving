@@ -111,6 +111,10 @@ public class Solution926 {
 		return answer;
 	}
 
+	/*
+	 * Time: O(2*N)
+	 * Space: O(1)
+	 */
 	public int minFlipsMonoIncrSol1(String s) {
 		int zeroCount = 0;
 		for (int i = 0; i < s.length(); i++) {
@@ -118,11 +122,18 @@ public class Solution926 {
 				zeroCount++;
 			}
 		}
+		// 0 * 0 + 1 * n
 		int answer = zeroCount;
 		for (int i = 0; i < s.length(); i++) {
+			// 0 * (i+1) + 1 * (n - (i+1))
 			if (s.charAt(i) == '0') {
-				answer = Math.min(answer, --zeroCount);
+				// flip count --
+				// (stay) 0 -> 0
+				zeroCount--;
+				answer = Math.min(answer, zeroCount);
 			} else {
+				// flip count ++
+				// (flip) 1 -> 0
 				zeroCount++;
 			}
 		}
