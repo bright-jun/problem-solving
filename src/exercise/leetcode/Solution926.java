@@ -18,7 +18,6 @@ public class Solution926 {
 		 * 0111
 		 * 1111
 		 */
-
 		 /*
 		  * 00110                                                                   
 		  * -> 00110                                                                
@@ -84,6 +83,18 @@ public class Solution926 {
 		  * -> 6 can be flipped
 		  *    -> 6 flip + count(11) || 6,4 flip + count(10)
 		  */
+		return minFlipsMonoIncrMySol(s);
+	}
+
+	/*
+	 * Time: O(2*N)
+	 * Space: O(N)
+	 */
+	public int minFlipsMonoIncrMySol(String s) {
+		/*
+		 * TLE
+		 * LinkedList -> Deque
+		 */
 		Deque<Integer> representList = new LinkedList<Integer>();
 		char[] charArray = s.toCharArray();
 		int zeroCount = 0;
@@ -96,21 +107,21 @@ public class Solution926 {
 				}
 			}
 		}
-		
+
 		int size = representList.size();
 		if (size == 0) {
 			return 0;
 		}
-		// all 1 vs all 0 
+		// all 1 vs all 0
 		int answer = Math.min(representList.pollFirst(), size);
-		for (int i = 0; i < size - 1 ; i++) {
-			// make 1 rest vs flip and make 1 rest 
+		for (int i = 0; i < size - 1; i++) {
+			// make 1 rest vs flip and make 1 rest
 			answer = Math.min(answer, (i + 1) + representList.pollFirst());
 		}
 
 		return answer;
 	}
-
+	
 	/*
 	 * Time: O(2*N)
 	 * Space: O(1)
@@ -143,16 +154,14 @@ public class Solution926 {
 	public static void main(String[] args) {
 		Solution926 solution926 = new Solution926();
 		int answer;
-		answer = solution926.minFlipsMonoIncrSol1("00110"); // 1
-		answer = solution926.minFlipsMonoIncrSol1("010110"); // 2
-		answer = solution926.minFlipsMonoIncrSol1("00011000"); // 2
-		answer = solution926.minFlipsMonoIncrSol1("10000000"); // 1
-		answer = solution926.minFlipsMonoIncrSol1("00010100000101010"); // 5
-		answer = solution926.minFlipsMonoIncrSol1("000101010101010"); // 6
-		answer = solution926.minFlipsMonoIncrSol1("0001010101010100"); // 6
-		answer = solution926.minFlipsMonoIncrSol1("0101100011"); // 3
-		answer = solution926.minFlipsMonoIncrSol1("10011111110010111011"); // 5
-		// TLE
-		// LinkedList -> Deque
+		answer = solution926.minFlipsMonoIncr("00110"); // 1
+		answer = solution926.minFlipsMonoIncr("010110"); // 2
+		answer = solution926.minFlipsMonoIncr("00011000"); // 2
+		answer = solution926.minFlipsMonoIncr("10000000"); // 1
+		answer = solution926.minFlipsMonoIncr("00010100000101010"); // 5
+		answer = solution926.minFlipsMonoIncr("000101010101010"); // 6
+		answer = solution926.minFlipsMonoIncr("0001010101010100"); // 6
+		answer = solution926.minFlipsMonoIncr("0101100011"); // 3
+		answer = solution926.minFlipsMonoIncr("10011111110010111011"); // 5
 	}
 }
