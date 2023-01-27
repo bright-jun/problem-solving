@@ -150,6 +150,35 @@ public class Solution926 {
 		}
 		return answer;
 	}
+	
+	/*
+	 * Time: O(N)
+	 * Space: O(1)
+	 */
+	public int minFlipsMonoIncrSol2(String s) {
+		/*
+		 * mathematical induction
+		 * - minFlipsMonoIncr[0,i) = dp[i]
+		 *   - minFlipsMonoIncr[0,i) + '1' = dp[i] 
+		 *   - minFlipsMonoIncr[0,i) + '0'
+		 *     - flip last '0' = a + 1
+		 *     - flip all '1' in [0,i)
+		 */
+		int answer = 0; // minFlipsMonoIncr[0,i) = dp[i]
+		int oneCount = 0; // oneCount[0,i)
+		for (int i = 0; i < s.length(); i++) {
+			if (s.charAt(i) == '0') {
+				// flip last '0' = dp[i-1] + 1
+				// flip all '1' in [0,i)
+				answer = Math.min(answer + 1, oneCount);
+			} else {
+				// '1' in [0,i)
+				oneCount++;
+			}
+		}
+
+		return answer;
+	}
 
 	public static void main(String[] args) {
 		Solution926 solution926 = new Solution926();
