@@ -5,8 +5,12 @@ public class Solution567 {
 	 * 1 <= s1.length, s2.length <= 10^4
 	 * s1 and s2 consist of lowercase English letters.
 	 */
+	/*
+	 * Time: O(s1.length + s2.length) = O(N)
+	 * Space: O(26) -> O(1)
+	 */
 	public boolean checkInclusion(String s1, String s2) {
-		if (s1.length() > s1.length()) {
+		if (s1.length() > s2.length()) {
 			return false;
 		}
 
@@ -37,6 +41,10 @@ public class Solution567 {
 		return false;
 	}
 
+	/*
+	 * Time: O(26) -> O(1)
+	 * Space: O(26) -> O(1)
+	 */
 	public boolean isInclusion(int[] a, int[] b) {
 		// check a <= b
 		for (int i = 0; i < 'z' - 'a' + 1; i++) {
