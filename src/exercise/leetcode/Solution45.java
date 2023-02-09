@@ -6,7 +6,7 @@ public class Solution45 {
 	 * 0 <= nums[i] <= 1000
 	 */
 	public int jump(int[] nums) {
-		return jump_1(nums);
+		return jump_2(nums);
 	}
 
 	/*
@@ -50,6 +50,29 @@ public class Solution45 {
 		 * { 0, +1, +1
 		 * { -, -, +2, +2, +2
 		 */
+	}
+
+	/*
+	 * Time: O(N)
+	 * Space: O(1)
+	 */
+	public int jump_2(int[] nums) {
+
+		// [start, end)
+		int start = 0;
+		int end = 1;
+		int step = 0;
+		while (end < nums.length) {
+			step++;
+			int nextEnd = end;
+			for (int i = start; i < end; i++) {
+				nextEnd = Math.max(nextEnd, i + nums[i] + 1);
+			}
+			start = end;
+			end = nextEnd;
+		}
+
+		return step;
 	}
 
 	public static void main(String[] args) {
