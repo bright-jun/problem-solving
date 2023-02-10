@@ -57,6 +57,47 @@ public class Solution1162 {
 		return answer;
 	}
 
+	/*
+	 * Time: O(N^2)
+	 * Space: O(N^2)
+	 */
+	public int maxDistance_sol2(int[][] grid) {
+		int n = grid.length;
+
+		// check every land point simultaneously
+		LinkedList<int[]> ll = new LinkedList<int[]>();
+		for (int i = 0; i < n; i++) {
+			for (int j = 0; j < n; j++) {
+				if (grid[i][j] == 1) {
+					ll.add(new int[] { i, j });
+				}
+			}
+		}
+
+		// Do BFS
+		int distance = -1;
+		while (ll.size() > 0) {
+			distance++;
+			for (int k = 0, lsize = ll.size(); k < lsize; k++) {
+				int[] now = ll.pop();
+				for (int d = 0; d < 4; d++) {
+					int nr = now[0] + Dir[d][0];
+					int nc = now[1] + Dir[d][1];
+					if (nr >= 0 && nr < n && nc >= 0 && nc < n && grid[nr][nc] == 0) {
+						ll.add(new int[] { nr, nc });
+						grid[nr][nc] = 9; // visited
+					}
+				}
+			}
+		}
+
+		if (distance == 0) {
+			return -1;
+		} else {
+			return distance;
+		}
+	}
+
 	public int[][] copyOf(int[][] grid) {
 		int n = grid.length;
 		int[][] copy = new int[n][n];
