@@ -53,6 +53,25 @@ public class Solution35 {
 		}
 	}
 
+	/*
+	 * Time: O(logN)
+	 * Space: O(1)
+	 */
+	public int binarySearch_2(int left, int right, int[] nums, int target) {
+		while (left <= right) {
+			int mid = left + (right - left) / 2;
+			if (nums[mid] == target) {
+				return mid;
+			} else if (nums[mid] > target) {
+				right = mid - 1;
+			} else {
+				left = mid + 1;
+			}
+		}
+
+		return left;
+	}
+
 	public static void main(String[] args) {
 		Solution35 solution35 = new Solution35();
 		int answer;
