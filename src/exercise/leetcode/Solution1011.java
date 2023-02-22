@@ -6,14 +6,14 @@ public class Solution1011 {
 	 * 1 <= weights[i] <= 500
 	 */
 	public int shipWithinDays(int[] weights, int days) {
-		return shipWithDays_sol1(weights, days);
+		return shipWithinDays_sol1(weights, days);
 	}
 
 	/*
 	 * Time:
 	 * Space:
 	 */
-	public int shipWithDays_sol1(int[] weights, int days) {
+	public int shipWithinDays_sol1(int[] weights, int days) {
 		for (int i = 1; i < weights.length; i++) {
 			weights[i] += weights[i - 1];
 		}
@@ -39,20 +39,31 @@ public class Solution1011 {
 		int count = 0;
 
 		int now = 0;
-		while (count < days && now <= weights.length - 1) {
+		while (count < days && now < weights.length) {
 			count++;
 			int last = findLastIndexOfCapacity(weights, capacity, now);
 			if (last == now) {
-				// too few days
-				// find in decreased capacity
-				return -1;
+				if (now == weights.length - 1) {
+					// too few days
+					// find in decreased capacity
+					return -1;
+				} else if (weights[now + 1] - weights[now] > capacity) {
+					// can't ship anymore
+					// find in increased capacity
+					return 1;
+				}
 			}
 			now = last + 1;
 		}
-		// count == days
 		if (now == weights.length) {
-			// fit
-			return 0;
+			if (count < days) {
+				// too few days
+				// find in decreased capacity
+				return -1;
+			} else {
+				// fit
+				return 0;
+			}
 		} else {
 			// too many days
 			// find in increased capacity
@@ -85,5 +96,7 @@ public class Solution1011 {
 		answer = solution1011.shipWithinDays(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 }, 5);
 		answer = solution1011.shipWithinDays(new int[] { 3, 2, 2, 4, 1, 4 }, 3);
 		answer = solution1011.shipWithinDays(new int[] { 1, 2, 3, 1, 1 }, 4);
+		answer = solution1011.shipWithinDays(new int[] { 147, 73, 265, 305, 191, 152, 192, 293, 309, 292, 182, 157, 381,
+				287, 73, 162, 313, 366, 346, 47 }, 10); // 602
 	}
 }
