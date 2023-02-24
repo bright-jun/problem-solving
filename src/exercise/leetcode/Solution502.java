@@ -107,6 +107,48 @@ public class Solution502 {
 		return money;
 	}
 
+	public static Comparator<int[]> comparator = new Comparator<int[]>() {
+		@Override
+		public int compare(int[] o1, int[] o2) {
+			if (o1[0] == o2[0]) {
+				return o1[1] - o2[1];
+			} else {
+				return o2[0] - o1[0];
+			}
+		}
+	};
+
+	/*
+	 * Time: O(NlogN)
+	 * Space: O(N)
+	 */
+	public int findMaximizedCapital_sol3(int k, int w, int[] profits, int[] capital) {
+		int n = profits.length;
+		LinkedList<int[]> projects = new LinkedList<int[]>();
+		for (int i = 0; i < n; i++) {
+			projects.add(new int[] { profits[i], capital[i] });
+		}
+		projects.sort(comparator);
+
+		int money = w;
+		for (int i = 0; i < k; i++) {
+			boolean find = false;
+			for (int[] p : projects) {
+				if (p[1] <= money) {
+					money += p[0];
+					projects.remove(p);
+					find = true;
+					break;
+				}
+			}
+			if (!find) {
+				break;
+			}
+		}
+
+		return money;
+	}
+
 	public static void main(String[] args) {
 		Solution502 solution502 = new Solution502();
 		int answer;
