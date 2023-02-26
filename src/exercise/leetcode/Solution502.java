@@ -2,6 +2,7 @@ package exercise.leetcode;
 
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 
 public class Solution502 {
 	/*
@@ -129,6 +130,36 @@ public class Solution502 {
 			projects.add(new int[] { profits[i], capital[i] });
 		}
 		projects.sort(comparator);
+
+		int money = w;
+		for (int i = 0; i < k; i++) {
+			boolean find = false;
+			for (int[] p : projects) {
+				if (p[1] <= money) {
+					money += p[0];
+					projects.remove(p);
+					find = true;
+					break;
+				}
+			}
+			if (!find) {
+				break;
+			}
+		}
+
+		return money;
+	}
+	
+	/*
+	 * Time: O(NlogN)
+	 * Space: O(N)
+	 */
+	public int findMaximizedCapital_sol4(int k, int w, int[] profits, int[] capital) {
+		int n = profits.length;
+		PriorityQueue<int[]> projects = new PriorityQueue<int[]>(comparator);
+		for (int i = 0; i < n; i++) {
+			projects.add(new int[] { profits[i], capital[i] });
+		}
 
 		int money = w;
 		for (int i = 0; i < k; i++) {
