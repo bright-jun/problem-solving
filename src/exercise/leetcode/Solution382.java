@@ -40,6 +40,27 @@ public class Solution382 {
         return target.val;
     }
 
+    /*
+     * Time: O(N)
+     * Space: O(1)
+     */
+    public int getRandom_sol2() {
+        int count = 0;
+        int result = 0;
+        ListNode curr = head;
+
+        while (curr != null) {
+            // Reservoir sampling
+            count++;
+            if ((int) (Math.random() * count) == 0) {
+                result = curr.val;
+            }
+            curr = curr.next;
+        }
+
+        return result;
+    }
+
     public static void main(String[] args) {
         int answer;
         ListNode head = ListNode.generate(new Integer[]{1, 2, 3});
