@@ -62,10 +62,10 @@ public class Solution101 {
             return;
         }
         TreeNode right = now.right;
-        leftToRightInorder(right, list);
+        rightToLeftInorder(right, list);
         list.add(now.val);
         TreeNode left = now.left;
-        leftToRightInorder(left, list);
+        rightToLeftInorder(left, list);
     }
 
     public static void main(String[] args) {
