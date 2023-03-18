@@ -1,6 +1,7 @@
 package exercise.leetcode;
 
 import exercise.leetcode.datastructure.TreeNode;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,59 +14,39 @@ public class Solution101 {
         return isSymmetric_sol1(root);
     }
 
+    public static boolean Answer = true;
+
     /*
      * Time: O(N)
      * Space: O(N)
      */
     public boolean isSymmetric_sol1(TreeNode root) {
-
+        Answer = true;
         TreeNode left = root.left;
         TreeNode right = root.right;
 
-        List<Integer> leftList = new LinkedList<>();
-        List<Integer> rightList = new LinkedList<>();
         // left->right vs right->left
-        leftToRightInorder(left, leftList);
-        rightToLeftInorder(right, rightList);
+        inorder(left, right);
 
-        int lSize = leftList.size();
-        int rSize = rightList.size();
+        return Answer;
+    }
 
-        if (lSize != rSize) {
-            return false;
-        }
-
-        for (int i = 0; i < lSize; i++) {
-            if ((int) rightList.get(i) != leftList.get(i)) {
-                return false;
+    public void inorder(TreeNode left, TreeNode right) {
+        if (left == null && right == null) {
+        } else if (left != null && right != null) {
+            if (left.val != right.val) {
+                Answer = false;
+            } else {
+                TreeNode leftLeft = left.left;
+                TreeNode rightRight = right.right;
+                inorder(leftLeft, rightRight);
+                TreeNode leftRight = left.right;
+                TreeNode rightLeft = right.left;
+                inorder(leftRight, rightLeft);
             }
+        } else {
+            Answer = false;
         }
-
-        return true;
-    }
-
-    public void leftToRightInorder(TreeNode now, List<Integer> list) {
-        if (now == null) {
-            list.add(-1000);
-            return;
-        }
-        TreeNode left = now.left;
-        leftToRightInorder(left, list);
-        list.add(now.val);
-        TreeNode right = now.right;
-        leftToRightInorder(right, list);
-    }
-
-    public void rightToLeftInorder(TreeNode now, List<Integer> list) {
-        if (now == null) {
-            list.add(-1000);
-            return;
-        }
-        TreeNode right = now.right;
-        rightToLeftInorder(right, list);
-        list.add(now.val);
-        TreeNode left = now.left;
-        rightToLeftInorder(left, list);
     }
 
     public static void main(String[] args) {
