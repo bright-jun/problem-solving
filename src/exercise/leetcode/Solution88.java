@@ -40,21 +40,50 @@ public class Solution88 {
         }
     }
 
+    /**
+     * Time : O(m + n)
+     * Space: O(m + n)
+     */
+    public void merge_2(int[] nums1, int m, int[] nums2, int n) {
+        int[] nums = new int[m + n];
+        int totalIdx = 0;
+        int idx1 = 0;
+        int idx2 = 0;
+
+        while (true) {
+            if (idx1 < m && idx2 < n) {
+                if (nums1[idx1] < nums2[idx2]) {
+                    nums[totalIdx++] = nums1[idx1++];
+                } else {
+                    nums[totalIdx++] = nums2[idx2++];
+                }
+            } else if (idx1 < m) {
+                nums[totalIdx++] = nums1[idx1++];
+            } else if (idx2 < n) {
+                nums[totalIdx++] = nums2[idx2++];
+            } else {
+                break;
+            }
+        }
+        // FIXME why reference of nums1 didn't change to nums?
+        nums1 = nums;
+    }
+
     public static void main(String[] args) {
         Solution88 solution88 = new Solution88();
         int[] nums1;
         int[] nums2;
         nums1 = new int[]{1, 2, 3, 0, 0, 0};
         nums2 = new int[]{2, 5, 6};
-        solution88.merge_1(nums1, 3, nums2, 3);
+        solution88.merge_2(nums1, 3, nums2, 3);
         System.out.println(Arrays.toString(nums1));
         nums1 = new int[]{1};
         nums2 = new int[]{};
-        solution88.merge_1(nums1, 1, nums2, 0);
+        solution88.merge_2(nums1, 1, nums2, 0);
         System.out.println(Arrays.toString(nums1));
         nums1 = new int[]{0};
         nums2 = new int[]{1};
-        solution88.merge_1(nums1, 0, nums2, 1);
+        solution88.merge_2(nums1, 0, nums2, 1);
         System.out.println(Arrays.toString(nums1));
         return;
     }
