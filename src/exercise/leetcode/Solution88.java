@@ -65,8 +65,14 @@ public class Solution88 {
                 break;
             }
         }
-        // FIXME why reference of nums1 didn't change to nums?
-        nums1 = nums;
+        // why reference of nums1 didn't change to nums?
+        // Java uses Pass-by-Value https://stackoverflow.com/a/40523/10837658
+        // this changes only the value of the nums1 reference, not the real reference value of nums1
+        // nums1 = nums;
+        // you need to deep copy
+        for (int i = 0; i < m + n; i++) {
+            nums1[i] = nums[i];
+        }
     }
 
     public static void main(String[] args) {
