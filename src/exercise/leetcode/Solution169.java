@@ -9,7 +9,7 @@ public class Solution169 {
      * -10^9 <= nums[i] <= 10^9
      */
     public int majorityElement(int[] nums) {
-        return majorityElement_1(nums);
+        return majorityElement_2(nums);
     }
 
     /**
@@ -28,6 +28,31 @@ public class Solution169 {
         }
 
         return -1;
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     * Solution: https://sgc109.github.io/2020/11/30/boyer-moore-majority-vote-algorithm/
+     * Boyer-Moore Majority Vote Algorithm
+     */
+    public int majorityElement_2(int[] nums) {
+        int count = 0;
+        int candidate = nums[0];
+        for (int i = 0; i < nums.length; i++) {
+            if (count == 0) {
+                // next candidate
+                candidate = nums[i];
+            }
+
+            if (candidate == nums[i]) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+
+        return candidate;
     }
 
 
