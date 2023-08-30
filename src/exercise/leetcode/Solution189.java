@@ -7,7 +7,7 @@ public class Solution189 {
      * 0 <= k <= 10^5
      */
     public void rotate(int[] nums, int k) {
-        rotate_1(nums, k);
+        rotate_2(nums, k);
     }
 
     /**
@@ -22,6 +22,31 @@ public class Solution189 {
         }
 
         System.arraycopy(answer, 0, nums, 0, nums.length);
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     */
+    public void rotate_2(int[] nums, int k) {
+        int kk = k % nums.length;
+        // 1234/567
+        reverse(nums, 0, nums.length - 1);
+        // 765/4321
+        reverse(nums, 0, kk - 1);
+        // 567/4321
+        reverse(nums, kk, nums.length - 1);
+        // 567/1234
+    }
+
+    private void reverse(int[] nums, int start, int end) {
+        while (start < end) {
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
     }
 
 
