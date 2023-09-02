@@ -6,7 +6,7 @@ public class Solution55 {
      * 0 <= nums[i] <= 10^5
      */
     public boolean canJump(int[] nums) {
-        return canJump_1(nums);
+        return canJump_2(nums);
     }
 
     /**
@@ -61,10 +61,27 @@ public class Solution55 {
          */
     }
 
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     */
+    public boolean canJump_2(int[] nums) {
+        int last = nums.length - 1;
+        int maxJump = nums[0];
+        // if index is not reachable to maxJump, break
+        for (int i = 1; i <= Math.min(maxJump, last); i++) {
+            // update maxJump
+            maxJump = Math.max(maxJump, i + nums[i]);
+        }
+        // check canJump
+        return maxJump >= last;
+    }
+
     public static void main(String[] args) {
         Solution55 solution55 = new Solution55();
         boolean answer;
-        answer = solution55.canJump(new int[]{2, 3, 1, 1, 4});
-        answer = solution55.canJump(new int[]{3, 2, 1, 0, 4});
+        answer = solution55.canJump(new int[]{2, 3, 1, 1, 4}); // true
+        answer = solution55.canJump(new int[]{3, 2, 1, 0, 4}); // false
+        answer = solution55.canJump(new int[]{1, 2, 3}); // false
     }
 }
