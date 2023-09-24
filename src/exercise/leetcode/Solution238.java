@@ -7,7 +7,7 @@ public class Solution238 {
      * The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
      */
     public int[] productExceptSelf(int[] nums) {
-        return productExceptSelf_1(nums);
+        return productExceptSelf_2(nums);
     }
 
     /**
@@ -35,6 +35,34 @@ public class Solution238 {
             } else {
                 nums[i] = products / nums[i];
             }
+        }
+
+        return nums;
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(N)
+     */
+    public int[] productExceptSelf_2(int[] nums) {
+        int n = nums.length;
+        // leftward product [0, i)
+        int[] leftwardProducts = new int[n];
+        leftwardProducts[0] = 1;
+        for (int i = 1; i < n; i++) {
+            leftwardProducts[i] = leftwardProducts[i - 1] * nums[i - 1];
+        }
+
+        // rightward product from (i, n-1]
+        int[] rightwardProducts = new int[n];
+        rightwardProducts[n - 1] = 1;
+        for (int i = n - 2; i >= 0; i--) {
+            rightwardProducts[i] = rightwardProducts[i + 1] * nums[i + 1];
+        }
+
+        // leftward product * rightward product
+        for (int i = 0; i < n; i++) {
+            nums[i] = leftwardProducts[i] * rightwardProducts[i];
         }
 
         return nums;
