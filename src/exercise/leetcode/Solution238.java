@@ -7,7 +7,7 @@ public class Solution238 {
      * The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
      */
     public int[] productExceptSelf(int[] nums) {
-        return productExceptSelf_2(nums);
+        return productExceptSelf_3(nums);
     }
 
     /**
@@ -66,6 +66,32 @@ public class Solution238 {
         }
 
         return nums;
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     * Follow up: Can you solve the problem in O(1) extra space complexity?
+     * (The output array does not count as extra space for space complexity analysis.)
+     */
+    public int[] productExceptSelf_3(int[] nums) {
+        int n = nums.length;
+        // leftward product [0, i)
+        int[] leftwardProducts = new int[n];
+        leftwardProducts[0] = 1;
+        for (int i = 1; i < n; i++) {
+            leftwardProducts[i] = leftwardProducts[i - 1] * nums[i - 1];
+        }
+
+        // rightward product from (i, n-1]
+        int rightwardProduct = 1;
+        for (int i = n - 2; i >= 0; i--) {
+            rightwardProduct = rightwardProduct * nums[i + 1];
+            // leftward product * rightward product
+            leftwardProducts[i] = leftwardProducts[i] * rightwardProduct;
+        }
+
+        return leftwardProducts;
     }
 
     public static void main(String[] args) {
