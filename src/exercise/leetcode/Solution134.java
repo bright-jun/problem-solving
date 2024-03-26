@@ -7,7 +7,7 @@ public class Solution134 {
      * 0 <= gas[i], cost[i] <= 10^4
      */
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        return canCompleteCircuit_1(gas, cost);
+        return canCompleteCircuit_2(gas, cost);
     }
 
     /*
@@ -81,11 +81,57 @@ public class Solution134 {
         return -1;
     }
 
+    /*
+     * Time: O(N)
+     * Space: O(N)
+     */
+    public int canCompleteCircuit_2(int[] gas, int[] cost) {
+        int n = gas.length;
+        int totalSurplus = 0;
+        int surplus = 0;
+        int start = 0;
+
+        for (int i = 0; i < n; i++) {
+            totalSurplus += gas[i] - cost[i];
+            surplus += gas[i] - cost[i];
+            if (surplus < 0) {
+                // skip starts in [now, i]
+                // trip[now, i-1] >= 0 and trip[now, i] < 0
+                // trip[now, now] >= 0
+                // trip[now, i-1] >= trip[now+1, i-1] >= trip[now+2, i-1] ...
+                // 0 > trip[now, i] >= trip[now+1, i] >= trip[now+2, i] ...
+                // any starts in [now, i] will fail
+                surplus = 0;
+                start = i + 1;
+                // start to get trip [i+1, ?]
+                // if [start, start+1 .. n] >= 0
+                // check if start is answer
+            }
+            // what about start+1 and more?
+            // trip[start, start] >= 0
+            // trip[start, n] >= trip[start+1, n] >= trip[start+2, n] ...
+            // we can skip
+        }
+
+        /*
+        1 -2 3 -4 2 0 0 0
+         */
+        // [start, start+1 .. n] >= 0,
+        // consider [0, start-1]
+        // trip[0, start-1] + trip[start, n] >= 0
+        if (totalSurplus >= 0) {
+            return start;
+        } else {
+            return -1;
+        }
+    }
+
     public static void main(String[] args) {
         Solution134 solution134 = new Solution134();
         int answer;
         answer = solution134.canCompleteCircuit(new int[]{1, 2, 3, 4, 5}, new int[]{3, 4, 5, 1, 2});
         answer = solution134.canCompleteCircuit(new int[]{2, 3, 4}, new int[]{3, 4, 3});
         answer = solution134.canCompleteCircuit(new int[]{3, 1, 1}, new int[]{1, 2, 2});
+        answer = solution134.canCompleteCircuit(new int[]{7, 1, 0, 11, 4}, new int[]{5, 9, 1, 2, 5});
     }
 }
