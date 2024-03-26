@@ -7,7 +7,7 @@ public class Solution134 {
      * 0 <= gas[i], cost[i] <= 10^4
      */
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        return canCompleteCircuit_0(gas, cost);
+        return canCompleteCircuit_1(gas, cost);
     }
 
     /*
@@ -58,6 +58,27 @@ public class Solution134 {
             }
         }
         return true;
+    }
+
+    /*
+     * Time: O(N^2) ... TODO TLE
+     * Space: O(N)
+     */
+    public int canCompleteCircuit_1(int[] gas, int[] cost) {
+        int n = gas.length;
+        for (int i = 0; i < n; i++) {
+            int totalFuel = 0;
+            for (int j = 0; j < n; j++) {
+                totalFuel += gas[(j + i) % n] - cost[(j + i) % n];
+                if (totalFuel < 0) {
+                    break;
+                }
+            }
+            if (totalFuel >= 0) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     public static void main(String[] args) {
