@@ -13,7 +13,7 @@ public class Solution79 {
      * board and word consists of only lowercase and uppercase English letters.
      */
     public boolean exist(char[][] board, String word) {
-        return exist_BFS(board, word);
+        return exist_DFS(board, word);
     }
 
     public static class Search {
@@ -65,6 +65,62 @@ public class Solution79 {
         }
 
         return false;
+    }
+
+    public static boolean Answer;
+    public static int M;
+    public static int N;
+    public static int K;
+    public static char[][] Board;
+    public static boolean[][] Visited;
+    public static char[] Words;
+
+    /**
+     * Time: O(M*N)
+     * Space: O(M^N)
+     */
+    public boolean exist_DFS(char[][] board, String word) {
+        Answer = false;
+        M = board.length;
+        N = board[0].length;
+        Board = copy(board);
+        Visited = new boolean[M][N];
+        Words = word.toCharArray();
+        K = Words.length;
+
+        for (int r = 0; r < M; r++) {
+            for (int c = 0; c < N; c++) {
+                if (Board[r][c] == Words[0]) {
+                    Visited[r][c] = true;
+                    dfs(r, c, 1);
+                    Visited[r][c] = false;
+                    if (Answer) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public void dfs(int r, int c, int count) {
+        if (count == K) {
+            Answer = true;
+            return;
+        }
+
+        for (int d = 0; d < 4; d++) {
+            int nr = r + DIR[d][0];
+            int nc = c + DIR[d][1];
+            if (nr >= 0 && nr < M && nc >= 0 && nc < N && !Visited[nr][nc] && Board[nr][nc] == Words[count]) {
+                Visited[nr][nc] = true;
+                dfs(nr, nc, count + 1);
+                Visited[nr][nc] = false;
+                if (Answer) {
+                    return;
+                }
+            }
+        }
     }
 
     private char[][] copy(char[][] board) {
