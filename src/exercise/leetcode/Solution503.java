@@ -8,7 +8,7 @@ public class Solution503 {
      * -10^9 <= nums[i] <= 10^9
      */
     public int[] nextGreaterElements(int[] nums) {
-        return nextGreaterElements_1(nums);
+        return nextGreaterElements_2(nums);
     }
 
     /**
@@ -53,6 +53,32 @@ public class Solution503 {
                 answer[pop[0] % n] = nums[i % n];
             }
             stack.push(new int[]{i, nums[i % n]});
+        }
+
+        return answer;
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(N)
+     */
+    public int[] nextGreaterElements_2(int[] nums) {
+        int n = nums.length;
+        int[] answer = new int[n];
+        for (int i = 0; i < n; i++) {
+            answer[i] = -1;
+        }
+        // index
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < 2 * n; i++) {
+            while (!stack.isEmpty() && nums[stack.peek()] < nums[i % n]) {
+                answer[stack.pop()] = nums[i % n];
+            }
+            // only check [0, n)
+            if (i < n) {
+                stack.push(i);
+            }
         }
 
         return answer;
