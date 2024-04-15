@@ -1,12 +1,14 @@
 package exercise.leetcode;
 
+import java.util.Stack;
+
 public class Solution503 {
     /**
      * 1 <= nums.length <= 10^4
      * -10^9 <= nums[i] <= 10^9
      */
     public int[] nextGreaterElements(int[] nums) {
-        return nextGreaterElements_0(nums);
+        return nextGreaterElements_1(nums);
     }
 
     /**
@@ -31,6 +33,31 @@ public class Solution503 {
 
         return answer;
     }
+
+    /**
+     * Time: O(N)
+     * Space: O(N)
+     */
+    public int[] nextGreaterElements_1(int[] nums) {
+        int n = nums.length;
+        int[] answer = new int[n];
+        for (int i = 0; i < n; i++) {
+            answer[i] = -1;
+        }
+        // int[] { index, value }
+        Stack<int[]> stack = new Stack<>();
+
+        for (int i = 0; i < 2 * n; i++) {
+            while (!stack.isEmpty() && stack.peek()[1] < nums[i % n]) {
+                int[] pop = stack.pop();
+                answer[pop[0] % n] = nums[i % n];
+            }
+            stack.push(new int[]{i, nums[i % n]});
+        }
+
+        return answer;
+    }
+
 
     public static void main(String[] args) {
         Solution503 solution503 = new Solution503();
