@@ -2,50 +2,53 @@ package exercise.leetcode;
 
 public class Solution42 {
 
-	/*
-	 * n == height.length
-	 * 1 <= n <= 2 * 10^4
-	 * 0 <= height[i] <= 10^5
-	 * 
-	 * { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 } = 14
-	 * { 0, 1, 1, 2, 2, 2, 2, 3, 2, 2, 2, 1 } = 20 
-	 * 20 - 14 = 6
-	 * 
-	 * { 5, 4, 3, 2, 1 } = 15
-	 * { 5, 4, 3, 2, 1 } = 15
-	 * 15 - 15 = 0
-	 */
-	public int trap(int[] height) {
-		
-		int unfilledTrap = 0;
-		for (int i = 0; i < height.length; i++) {
-			unfilledTrap += height[i];
-		}
-		
-		int beforeHeight = -1;
-		
-		for (int i = 0; i < height.length; i++) {
-			if(beforeHeight <= height[i]) { // up
-				// fill nothing
-			} else { // down
-				// fill if there are height higher or same
-				// O(n) : check by every height element
-				// O(1) : check by cumulative sum
-			}
-		}
-		
-		int filledTrap = 0;
-		for (int i = 0; i < height.length; i++) {
-			filledTrap += height[i];
-		}
-		
-		return filledTrap - unfilledTrap;
-	}
+    /*
+     * n == height.length
+     * 1 <= n <= 2 * 10^4
+     * 0 <= height[i] <= 10^5
+     */
+    public int trap(int[] height) {
+        return trap_0(height);
+    }
 
-	public static void main(String[] args) {
-		Solution42 solution42 = new Solution42();
-		System.out.println(solution42.trap(new int[] { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 }));
-		System.out.println(solution42.trap(new int[] { 4, 2, 0, 3, 2, 5 }));
-		System.out.println(solution42.trap(new int[] { 0, 1, 0, 2, 1 }));
-	}
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     */
+    public int trap_0(int[] height) {
+        int n = height.length;
+        int maxHeight = Integer.MIN_VALUE;
+        int maxHeightIndex = 0;
+        int sumHeight = 0;
+        for (int i = 0; i < n; i++) {
+            if (maxHeight < height[i]) {
+                maxHeight = height[i];
+                maxHeightIndex = i;
+            }
+            sumHeight += height[i];
+        }
+        // [0,i] increasing, [i,n) decreasing
+        int total = 0;
+        int increasingHeight = Integer.MIN_VALUE;
+        for (int i = 0; i <= maxHeightIndex; i++) {
+            increasingHeight = Integer.max(increasingHeight, height[i]);
+            total += increasingHeight;
+        }
+        increasingHeight = Integer.MIN_VALUE;
+        for (int i = n - 1; i > maxHeightIndex; i--) {
+            increasingHeight = Integer.max(increasingHeight, height[i]);
+            total += increasingHeight;
+        }
+
+        return total - sumHeight;
+    }
+
+    public static void main(String[] args) {
+        Solution42 solution42 = new Solution42();
+        int answer;
+        answer = solution42.trap(new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1}); // 6
+        answer = solution42.trap(new int[]{4, 2, 0, 3, 2, 5}); // 9
+        answer = solution42.trap(new int[]{5, 2, 0, 3, 2, 4}); // 9
+        answer = solution42.trap(new int[]{0, 1, 0, 2, 1}); // 1
+    }
 }
