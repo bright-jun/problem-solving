@@ -1,6 +1,11 @@
 package exercise.leetcode;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
 public class Solution1971 {
     /**
@@ -18,8 +23,8 @@ public class Solution1971 {
     }
 
     /**
-     * Time: O(edges.length) .. TLE ?
-     * Space: O(edges.length)
+     * Time: O(n) - Each node is traversed at most once.
+     * Space: O(edges.length) - maximum queue length
      */
     public boolean validPath_0(int n, int[][] edges, int source, int destination) {
         // BFS
@@ -46,19 +51,20 @@ public class Solution1971 {
         }
 
         Queue<Integer> queue = new ArrayDeque<>();
-        boolean[] visited = new boolean[200001];
+        boolean[] visited = new boolean[n];
         queue.add(source);
         while (!queue.isEmpty()) {
             int now = queue.poll();
             if (now == destination) {
                 return true;
             }
-            visited[now] = true;
 
             List<Integer> nexts = paths.get(now);
             for (int next : nexts) {
                 if (!visited[next]) {
                     queue.add(next);
+                    // mark visited before polling helps deduping(removing duplicate)
+                    visited[next] = true;
                 }
             }
         }
