@@ -19,7 +19,7 @@ public class Solution1971 {
      * There are no self edges.
      */
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        return validPath_0(n, edges, source, destination);
+        return validPath_1(n, edges, source, destination);
     }
 
     /**
@@ -59,7 +59,7 @@ public class Solution1971 {
                 return true;
             }
 
-            List<Integer> nexts = paths.get(now);
+            List<Integer> nexts = paths.getOrDefault(now, new ArrayList<>());
             for (int next : nexts) {
                 if (!visited[next]) {
                     queue.add(next);
@@ -72,10 +72,70 @@ public class Solution1971 {
         return false;
     }
 
+    /**
+     * Time: O(n) - Each node is traversed at most once.
+     * Space: O(n) - Each node is traversed at most once.
+     */
+    public static boolean Answer;
+    public static boolean[] Visited;
+    public static Map<Integer, List<Integer>> Paths;
+
+    public boolean validPath_1(int n, int[][] edges, int source, int destination) {
+        // DFS
+        Answer = false;
+        Visited = new boolean[n];
+        // paths is sparse so using linkedList path not matrix
+        Paths = new HashMap<>();
+        for (int[] edge : edges) {
+            List<Integer> value = Paths.get(edge[0]);
+            if (value != null) {
+                value.add(edge[1]);
+            } else {
+                List<Integer> newValue = new ArrayList<>();
+                newValue.add(edge[1]);
+                Paths.put(edge[0], newValue);
+            }
+
+            value = Paths.get(edge[1]);
+            if (value != null) {
+                value.add(edge[0]);
+            } else {
+                List<Integer> newValue = new ArrayList<>();
+                newValue.add(edge[0]);
+                Paths.put(edge[1], newValue);
+            }
+        }
+
+        dfs(source, destination);
+
+        return Answer;
+    }
+
+    public void dfs(int now, int destination) {
+        if (Answer) {
+            return;
+        }
+        if (now == destination) {
+            Answer = true;
+            return;
+        }
+
+        List<Integer> nexts = Paths.getOrDefault(now, new ArrayList<>());
+        for (int next : nexts) {
+            if (!Visited[next]) {
+                Visited[next] = true;
+                dfs(next, destination);
+                // Visited[next] = false; don't need to explore again
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Solution1971 solution1971 = new Solution1971();
         boolean answer;
-        answer = solution1971.validPath(3, new int[][]{{0, 1}, {1, 2}, {2, 0}}, 0, 2);
-        answer = solution1971.validPath(6, new int[][]{{0, 1}, {0, 2}, {3, 5}, {5, 4}, {4, 3}}, 0, 5);
+        answer = solution1971.validPath(3, new int[][]{{0, 1}, {1, 2}, {2, 0}}, 0, 2); // true
+        answer = solution1971.validPath(6, new int[][]{{0, 1}, {0, 2}, {3, 5}, {5, 4}, {4, 3}}, 0, 5); // false
+        answer = solution1971.validPath(1, new int[][]{}, 0, 0); // true
+        answer = solution1971.validPath(1, new int[][]{}, 0, 1); // false
     }
 }
