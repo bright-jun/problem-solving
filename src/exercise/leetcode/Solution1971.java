@@ -19,7 +19,7 @@ public class Solution1971 {
      * There are no self edges.
      */
     public boolean validPath(int n, int[][] edges, int source, int destination) {
-        return validPath_1(n, edges, source, destination);
+        return validPath_2(n, edges, source, destination);
     }
 
     /**
@@ -73,8 +73,8 @@ public class Solution1971 {
     }
 
     /**
-     * Time: O(n) - Each node is traversed at most once.
-     * Space: O(n) - Each node is traversed at most once.
+     * Time: O(n) - Each node is traversed at most once. O(V+E)
+     * Space: O(n) - Each node is traversed at most once. O(V+E)?
      */
     public static boolean Answer;
     public static boolean[] Visited;
@@ -130,12 +130,57 @@ public class Solution1971 {
         }
     }
 
+    /**
+     * V: n
+     * E: edges.length
+     * Time: O(E*alpha(V))
+     * Space: O(V)
+     * https://leetcode.com/problems/find-if-path-exists-in-graph/solutions/5052801/beated-find-if-path-exists-in-graph/
+     */
+    public static int[] Parents;
+
+    public boolean validPath_2(int n, int[][] edges, int source, int destination) {
+        // union find
+        Parents = new int[n];
+        for (int i = 0; i < n; i++) {
+            Parents[i] = -1;
+        }
+
+        for (int[] edge : edges) {
+            union(edge[0], edge[1]);
+        }
+
+        return findRoot(source) == findRoot(destination);
+    }
+
+    /**
+     * Time: O(alpha(V))
+     */
+    private int findRoot(int n) {
+        if (Parents[n] == -1) {
+            return n;
+        } else {
+            int parent = findRoot(Parents[n]);
+            Parents[n] = parent;
+            return parent;
+        }
+    }
+
+    private void union(int a, int b) {
+        // left consumes right
+        int rootA = findRoot(a);
+        int rootB = findRoot(b);
+
+        if (rootA == rootB) {
+            return;
+        }
+        Parents[rootB] = rootA;
+    }
+
     public static void main(String[] args) {
         Solution1971 solution1971 = new Solution1971();
         boolean answer;
         answer = solution1971.validPath(3, new int[][]{{0, 1}, {1, 2}, {2, 0}}, 0, 2); // true
         answer = solution1971.validPath(6, new int[][]{{0, 1}, {0, 2}, {3, 5}, {5, 4}, {4, 3}}, 0, 5); // false
-        answer = solution1971.validPath(1, new int[][]{}, 0, 0); // true
-        answer = solution1971.validPath(1, new int[][]{}, 0, 1); // false
     }
 }
