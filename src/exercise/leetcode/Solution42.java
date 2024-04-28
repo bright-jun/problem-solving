@@ -8,7 +8,7 @@ public class Solution42 {
      * 0 <= height[i] <= 10^5
      */
     public int trap(int[] height) {
-        return trap_0(height);
+        return trap_1(height);
     }
 
     /**
@@ -41,6 +41,31 @@ public class Solution42 {
         }
 
         return total - sumHeight;
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(N)
+     */
+    public int trap_1(int[] height) {
+        int n = height.length;
+        int[] leftMaxHeight = new int[n];
+        int[] rightMaxHeight = new int[n];
+
+        leftMaxHeight[0] = height[0];
+        for (int i = 1; i < n; i++) {
+            leftMaxHeight[i] = Integer.max(height[i], leftMaxHeight[i - 1]);
+        }
+        rightMaxHeight[n - 1] = height[n - 1];
+        for (int i = 1; i < n; i++) {
+            rightMaxHeight[n - 1 - i] = Integer.max(height[n - 1 - i], rightMaxHeight[n - 1 - i + 1]);
+        }
+
+        int answer = 0;
+        for (int i = 1; i < n - 1; i++) {
+            answer += Integer.min(leftMaxHeight[i], rightMaxHeight[i]) - height[i];
+        }
+        return answer;
     }
 
     public static void main(String[] args) {
