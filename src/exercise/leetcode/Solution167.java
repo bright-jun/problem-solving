@@ -11,7 +11,7 @@ public class Solution167 {
      * The tests are generated such that there is exactly one solution.
      */
     public int[] twoSum(int[] numbers, int target) {
-        return twoSum_1(numbers, target);
+        return twoSum_2(numbers, target);
     }
 
     /**
@@ -48,6 +48,47 @@ public class Solution167 {
                 return new int[]{i + 1, targetIndex};
             }
         }
+        return null;
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(N)
+     */
+    public int[] twoSum_2(int[] numbers, int target) {
+        int n = numbers.length;
+        // using numbers is sorted in non-decreasing order.
+        // two-pointer
+
+        int start = 0;
+        int end = n - 1;
+        int sum = numbers[start] + numbers[end];
+
+        // [start, end]
+        while (start < end) {
+            if (sum == target) {
+                return new int[]{start + 1, end + 1};
+            } else if (sum < target) {
+                // the only way to bigger sum
+                // [start++, end]
+                // fix end
+                //  if end is answer, only find start with increasing
+                //  else, reach sum > target
+
+                // [start, end++] ? already searched
+                sum -= numbers[start];
+                start++;
+                sum += numbers[start];
+            } else { // (sum > target)
+                // then, end can't be answer
+                // [start, end--]
+                // [start--, end] ? already searched
+                sum -= numbers[end];
+                end--;
+                sum += numbers[end];
+            }
+        }
+
         return null;
     }
 
