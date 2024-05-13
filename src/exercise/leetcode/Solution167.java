@@ -1,5 +1,7 @@
 package exercise.leetcode;
 
+import java.util.HashMap;
+
 public class Solution167 {
     /**
      * 2 <= numbers.length <= 3 * 10^4
@@ -9,7 +11,7 @@ public class Solution167 {
      * The tests are generated such that there is exactly one solution.
      */
     public int[] twoSum(int[] numbers, int target) {
-        return twoSum_0(numbers, target);
+        return twoSum_1(numbers, target);
     }
 
     /**
@@ -23,6 +25,27 @@ public class Solution167 {
                 if (numbers[i] + numbers[j] == target) {
                     return new int[]{i + 1, j + 1};
                 }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(N)
+     */
+    public int[] twoSum_1(int[] numbers, int target) {
+        int n = numbers.length;
+        // value, index
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            hm.put(numbers[i], i + 1);
+        }
+
+        for (int i = 0; i < n; i++) {
+            Integer targetIndex = hm.get(target - numbers[i]);
+            if (targetIndex != null) {
+                return new int[]{i + 1, targetIndex};
             }
         }
         return null;
