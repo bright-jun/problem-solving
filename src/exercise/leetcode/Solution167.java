@@ -93,7 +93,7 @@ public class Solution167 {
     }
 
     /**
-     * Time: O(logN) - search with binarySearch
+     * Time: O(logN) ~ O(logN!) == O(NlogN)
      * Space: O(1)
      */
     public int[] twoSum_3(int[] numbers, int target) {
