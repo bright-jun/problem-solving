@@ -3,7 +3,7 @@ package exercise.leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Solution52 {
+public class Solution56 {
 
 	public int[][] merge(int[][] intervals) {
 
@@ -30,9 +30,9 @@ public class Solution52 {
 	}
 
 	public static void main(String[] args) {
-		Solution52 solution52 = new Solution52();
+		Solution56 solution56 = new Solution56();
 		System.out
-				.println(Arrays.toString(solution52.merge(new int[][] { { 1, 3 }, { 2, 6 }, { 8, 10 }, { 15, 18 } })));
-		System.out.println(Arrays.toString(solution52.merge(new int[][] { { 1, 4 }, { 4, 5 } })));
+				.println(Arrays.toString(solution56.merge(new int[][] { { 1, 3 }, { 2, 6 }, { 8, 10 }, { 15, 18 } })));
+		System.out.println(Arrays.toString(solution56.merge(new int[][] { { 1, 4 }, { 4, 5 } })));
 	}
 }
