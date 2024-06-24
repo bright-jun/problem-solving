@@ -1,5 +1,7 @@
 package exercise.leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 public class Solution73 {
@@ -38,6 +40,48 @@ public class Solution73 {
             }
             for (int r = 0; r < m; r++) {
                 matrix[r][zero[1]] = 0;
+            }
+        }
+    }
+
+    /**
+     * Time:O(MN)
+     * Space: O(M + N)
+     */
+    public void setZeroes_1(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        // O(M)
+        Set<Integer> rowSet = new HashSet<>();
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (matrix[r][c] == 0) {
+                    rowSet.add(r);
+                    break;
+                }
+            }
+        }
+
+        // O(N)
+        Set<Integer> colSet = new HashSet<>();
+        for (int c = 0; c < n; c++) {
+            for (int r = 0; r < m; r++) {
+                if (matrix[r][c] == 0) {
+                    colSet.add(c);
+                    break;
+                }
+            }
+        }
+
+        for (int r : rowSet) {
+            for (int c = 0; c < n; c++) {
+                matrix[r][c] = 0;
+            }
+        }
+        for (int c : colSet) {
+            for (int r = 0; r < m; r++) {
+                matrix[r][c] = 0;
             }
         }
     }
