@@ -13,7 +13,7 @@ public class Solution73 {
      * You must do it in place.
      */
     public void setZeroes(int[][] matrix) {
-        setZeroes_0(matrix);
+        setZeroes_2(matrix);
     }
 
     /**
@@ -82,6 +82,63 @@ public class Solution73 {
         for (int c : colSet) {
             for (int r = 0; r < m; r++) {
                 matrix[r][c] = 0;
+            }
+        }
+    }
+
+    /**
+     * Time:O(MN*(M+N))
+     * Space: O(number of zeroes)
+     */
+    public void setZeroes_2(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[0].length;
+
+        int marker = Integer.MIN_VALUE;
+
+        while (true) {
+            boolean isDuplicated = false;
+            for (int r = 0; r < m; r++) {
+                if (isDuplicated) {
+                    break;
+                }
+                for (int c = 0; c < n; c++) {
+                    if (matrix[r][c] == marker) {
+                        marker++;
+                        isDuplicated = true;
+                        break;
+                    }
+                }
+            }
+            if (!isDuplicated) {
+                break;
+            }
+        }
+
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (matrix[r][c] == 0) {
+                    for (int nc = 0; nc < n; nc++) {
+                        if (nc == c || matrix[r][nc] == 0 || matrix[r][nc] == marker) {
+                            continue;
+                        }
+                        matrix[r][nc] = marker;
+                    }
+                    for (int nr = 0; nr < m; nr++) {
+                        if (nr == r || matrix[nr][c] == 0 || matrix[nr][c] == marker) {
+                            continue;
+                        }
+                        matrix[nr][c] = marker;
+                    }
+                }
+            }
+        }
+
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (matrix[r][c] == marker) {
+                    matrix[r][c] = 0;
+                }
             }
         }
     }
