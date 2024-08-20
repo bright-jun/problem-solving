@@ -1,6 +1,7 @@
 package exercise.leetcode;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -15,6 +16,8 @@ import java.util.PriorityQueue;
 class MedianFinder {
     private final List<Integer> list;
     private final PriorityQueue<Integer> pq;
+    private final PriorityQueue<Integer> ascendingPq;
+    private final PriorityQueue<Integer> descendingPq;
 
     public MedianFinder() {
         list = new ArrayList<>();
@@ -24,10 +27,12 @@ class MedianFinder {
                 return o1 - o2;
             }
         });
+        ascendingPq = new PriorityQueue<>();
+        descendingPq = new PriorityQueue<>(Collections.reverseOrder());
     }
 
     public void addNum(int num) {
-        addNum3(num);
+        addNum4(num);
     }
 
     /**
@@ -111,8 +116,22 @@ class MedianFinder {
         pq.add(num);
     }
 
+    /**
+     * Time: O(logN)
+     * Space: O(N)
+     */
+    private void addNum4(int num) {
+        ascendingPq.offer(num);
+        descendingPq.offer(ascendingPq.poll());
+
+        // (k, k) or (k+1, k)
+        if (ascendingPq.size() < descendingPq.size()) {
+            ascendingPq.offer(descendingPq.poll());
+        }
+    }
+
     public double findMedian() {
-        return findMedian2();
+        return findMedian3();
     }
 
     /**
@@ -153,6 +172,18 @@ class MedianFinder {
                 pq.poll();
             }
             return pq.poll();
+        }
+    }
+
+    /**
+     * Time: O(1)
+     * Space: O(1)
+     */
+    private double findMedian3() {
+        if ((ascendingPq.size() + descendingPq.size()) % 2 == 0) {
+            return (ascendingPq.peek() + descendingPq.peek()) / 2.0;
+        } else {
+            return ascendingPq.peek();
         }
     }
 }
