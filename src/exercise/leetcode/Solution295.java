@@ -18,7 +18,7 @@ class MedianFinder {
     }
 
     public void addNum(int num) {
-        addNum1(num);
+        addNum2(num);
     }
 
     /**
@@ -38,6 +38,59 @@ class MedianFinder {
             }
         }
         list.add(lSize, num);
+        return;
+    }
+
+    /**
+     * Time: O(logN)
+     * Space: O(1)
+     */
+    private void addNum2(int num) {
+        if (list.size() == 0) {
+            list.add(num);
+            return;
+        }
+
+        if (list.get(list.size() - 1) <= num) {
+            list.add(num);
+            return;
+        }
+
+        // BinarySearch index which is less than or equal to `num`
+        int targetIndex;
+
+        int left = 0;
+        int right = list.size() - 1;
+        int mid = (left + right) / 2;
+        while (true) {
+            Integer midValue = list.get(mid);
+            if (midValue < num) { // search right side
+                left = mid + 1;
+                mid = (left + right) / 2;
+                if (left >= right) {
+                    targetIndex = mid;
+                    break;
+                }
+            } else if (midValue == num) {
+                targetIndex = mid;
+                break;
+            } else { // midValue > num // search left side
+                right = mid - 1;
+                mid = (left + right) / 2;
+                if (left >= right) {
+                    targetIndex = mid;
+                    break;
+                }
+            }
+        }
+
+        if (list.get(targetIndex) == num) {
+            list.add(targetIndex, num);
+        } else if (list.get(targetIndex) > num) {
+            list.add(targetIndex, num);
+        } else { // list.get(targetIndex) < num
+            list.add(targetIndex + 1, num);
+        }
         return;
     }
 
@@ -68,5 +121,41 @@ public class Solution295 {
         System.out.println(medianFinder.findMedian()); // return 1.5 (i.e., (1 + 2) / 2)
         medianFinder.addNum(3);    // arr[1, 2, 3]
         System.out.println(medianFinder.findMedian()); // return 2.0
+
+        medianFinder = new MedianFinder();
+        medianFinder.addNum(-1);    // arr = [-1]
+        System.out.println(medianFinder.findMedian()); // return -1.0
+        medianFinder.addNum(-2);    // arr = [-2, -1]
+        System.out.println(medianFinder.findMedian()); // return -1.5
+        medianFinder.addNum(-3);    // arr = [-3, -2, -1]
+        System.out.println(medianFinder.findMedian()); // return -2.0
+        medianFinder.addNum(-4);    // arr = [-4, -3, -2, -1]
+        System.out.println(medianFinder.findMedian()); // return -2.5
+        medianFinder.addNum(-5);    // arr = [-5, -4, -3, -2, -1]
+        System.out.println(medianFinder.findMedian()); // return -3.0
+
+        medianFinder = new MedianFinder();
+        medianFinder.addNum(6);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(10);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(2);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(6);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(5);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(0);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(6);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(3);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(1);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(0);
+        System.out.println(medianFinder.findMedian());
+        medianFinder.addNum(0);
+        System.out.println(medianFinder.findMedian());
     }
 }
