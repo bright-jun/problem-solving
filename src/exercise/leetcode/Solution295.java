@@ -1,7 +1,9 @@
 package exercise.leetcode;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.PriorityQueue;
 
 /**
  * For example, for arr = [2,3,4], the median is 3.
@@ -12,18 +14,25 @@ import java.util.List;
  */
 class MedianFinder {
     private final List<Integer> list;
+    private final PriorityQueue<Integer> pq;
 
     public MedianFinder() {
         list = new ArrayList<>();
+        pq = new PriorityQueue<Integer>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
     }
 
     public void addNum(int num) {
-        addNum2(num);
+        addNum3(num);
     }
 
     /**
      * Time: O(N)
-     * Space: O(1)
+     * Space: O(N)
      */
     private void addNum1(int num) {
         if (list.size() == 0) {
@@ -43,7 +52,7 @@ class MedianFinder {
 
     /**
      * Time: O(logN)
-     * Space: O(1)
+     * Space: O(N)
      */
     private void addNum2(int num) {
         if (list.size() == 0) {
@@ -95,10 +104,22 @@ class MedianFinder {
     }
 
     /**
+     * Time: O(logN)
+     * Space: O(N)
+     */
+    private void addNum3(int num) {
+        pq.add(num);
+    }
+
+    public double findMedian() {
+        return findMedian2();
+    }
+
+    /**
      * Time: O(1)
      * Space: O(1)
      */
-    public double findMedian() {
+    private double findMedian1() {
         int size = list.size();
         if (size % 2 == 0) {
             if (size > 0) {
@@ -108,6 +129,30 @@ class MedianFinder {
             }
         } else {
             return list.get(size / 2);
+        }
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     */
+    private double findMedian2() {
+        int size = pq.size();
+        if (size % 2 == 0) {
+            if (size > 0) {
+                for (int peek = 0; peek < size / 2 - 2; peek++) {
+                    pq.poll();
+                }
+                // FIXME polling changes states of pq
+                return (double) (pq.poll() + pq.poll()) / 2;
+            } else {
+                throw new IllegalStateException("no elements exists");
+            }
+        } else {
+            for (int peek = 0; peek < size / 2 - 1; peek++) {
+                pq.poll();
+            }
+            return pq.poll();
         }
     }
 }
