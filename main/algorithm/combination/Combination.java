@@ -3,7 +3,7 @@ package algorithm.combination;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class combination {
+public class Combination {
 
     static int MOD = 10000019;
 
