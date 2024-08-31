@@ -227,22 +227,22 @@ public class Solution73 {
         Solution73 solution73 = new Solution73();
         int[][] matrix;
         matrix = new int[][]{
-            {1, 1, 1},
-            {1, 0, 1},
-            {1, 1, 1}
+                {1, 1, 1},
+                {1, 0, 1},
+                {1, 1, 1}
         };
         solution73.setZeroes(matrix);
         matrix = new int[][]{
-            {0, 1, 2, 0},
-            {3, 4, 5, 2},
-            {1, 3, 1, 5}
+                {0, 1, 2, 0},
+                {3, 4, 5, 2},
+                {1, 3, 1, 5}
         };
         solution73.setZeroes(matrix);
         matrix = new int[][]{
-            {1, 2, 3, 4},
-            {5, 0, 7, 8},
-            {0, 10, 11, 12},
-            {13, 14, 15, 0}
+                {1, 2, 3, 4},
+                {5, 0, 7, 8},
+                {0, 10, 11, 12},
+                {13, 14, 15, 0}
         };
         solution73.setZeroes(matrix);
     }

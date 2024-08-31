@@ -102,20 +102,20 @@ public class Solution1249 {
 	}
 	*/
 
-	public String minRemoveToMakeValid(String s) {
-		
-		return null;
-	}
-	
-	public static void main(String[] args) {
-		Solution1249 solution1249 = new Solution1249();
-		System.out.println(solution1249.minRemoveToMakeValid("(leet(c)o)de"));
-		System.out.println(solution1249.minRemoveToMakeValid("lee(t(c)o)de"));
-		System.out.println(solution1249.minRemoveToMakeValid("lee(t(c)o)de)"));
-		System.out.println(solution1249.minRemoveToMakeValid("a)b(c)d"));
-		System.out.println(solution1249.minRemoveToMakeValid("a)b()d"));
-		System.out.println(solution1249.minRemoveToMakeValid("))(("));
-		System.out.println(solution1249.minRemoveToMakeValid("("));
-		System.out.println(solution1249.minRemoveToMakeValid(")i()()((fm(((()")); // DFS -> TLE "i()()fm()"
-	}
+    public String minRemoveToMakeValid(String s) {
+
+        return null;
+    }
+
+    public static void main(String[] args) {
+        Solution1249 solution1249 = new Solution1249();
+        System.out.println(solution1249.minRemoveToMakeValid("(leet(c)o)de"));
+        System.out.println(solution1249.minRemoveToMakeValid("lee(t(c)o)de"));
+        System.out.println(solution1249.minRemoveToMakeValid("lee(t(c)o)de)"));
+        System.out.println(solution1249.minRemoveToMakeValid("a)b(c)d"));
+        System.out.println(solution1249.minRemoveToMakeValid("a)b()d"));
+        System.out.println(solution1249.minRemoveToMakeValid("))(("));
+        System.out.println(solution1249.minRemoveToMakeValid("("));
+        System.out.println(solution1249.minRemoveToMakeValid(")i()()((fm(((()")); // DFS -> TLE "i()()fm()"
+    }
 }

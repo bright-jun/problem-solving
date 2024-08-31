@@ -29,35 +29,35 @@ public class TreeNode {
      * @return the tree node
      * @author Myungjun Kim
      */
-	public static TreeNode generate(Integer[] elements) {
+    public static TreeNode generate(Integer[] elements) {
 
-		if (elements.length == 0) {
-			return null;
-		}
+        if (elements.length == 0) {
+            return null;
+        }
 
-		Queue<TreeNode> treeNodes = new LinkedList<TreeNode>();
-		for (Integer element : elements) {
-			treeNodes.add(integerToTreeNode(element));
-		}
-		Queue<TreeNode> parents = new LinkedList<TreeNode>();
+        Queue<TreeNode> treeNodes = new LinkedList<TreeNode>();
+        for (Integer element : elements) {
+            treeNodes.add(integerToTreeNode(element));
+        }
+        Queue<TreeNode> parents = new LinkedList<TreeNode>();
 
-		TreeNode root = treeNodes.poll();
-		parents.add(root);
-		TreeNode now;
+        TreeNode root = treeNodes.poll();
+        parents.add(root);
+        TreeNode now;
 
-		while (!parents.isEmpty()) {
-			now = parents.poll();
-			if (now == null) {
-				continue;
-			}
-			now.left = treeNodes.poll();
-			now.right = treeNodes.poll();
-			parents.add(now.left);
-			parents.add(now.right);
-		}
+        while (!parents.isEmpty()) {
+            now = parents.poll();
+            if (now == null) {
+                continue;
+            }
+            now.left = treeNodes.poll();
+            now.right = treeNodes.poll();
+            parents.add(now.left);
+            parents.add(now.right);
+        }
 
-		return root;
-	}
+        return root;
+    }
 
 
     /**
@@ -72,7 +72,7 @@ public class TreeNode {
             return null;
         } else {
 
-        	return new TreeNode(element);
+            return new TreeNode(element);
         }
     }
 }

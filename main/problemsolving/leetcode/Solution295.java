@@ -1,10 +1,6 @@
 package problemsolving.leetcode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * For example, for arr = [2,3,4], the median is 3.

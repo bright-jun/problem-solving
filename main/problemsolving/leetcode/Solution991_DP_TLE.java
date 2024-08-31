@@ -5,10 +5,10 @@ import java.util.HashMap;
 public class Solution991_DP_TLE {
     /*
      * 1 <= x, y <= 10^9
-     * 
+     *
      * O(N) -> dynamic programming -> TLE
-     * NEED O(1)     
-     *     
+     * NEED O(1)
+     *
      */
 
     public static HashMap<Integer, Integer> Hm;
@@ -31,16 +31,16 @@ public class Solution991_DP_TLE {
             // {2 -> 4 -> 3}.
             // {5 -> 4 -> 8}.
             // {3 -> 6 -> 5 -> 10}.
-        	int next1 = now * 2;
+            int next1 = now * 2;
             findStep(next1, step + 1, target);
         }
 
-        if (target/2 < now) {
+        if (target / 2 < now) {
             // if now is bigger than target/2, subtract. if not, multiply is better
             // {2 -> 4 -> 3}.
             // {5 -> 4 -> 8}.
             // {3 -> 6 -> 5 -> 10}.
-        	int next2 = now - 1;
+            int next2 = now - 1;
             findStep(next2, step + 1, target);
         }
     }

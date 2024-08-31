@@ -1,11 +1,8 @@
 package problemsolving.leetcode;
 
 import problemsolving.leetcode.datastructure.TreeNode;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Stack;
+
+import java.util.*;
 
 public class Solution145 {
     /**
