@@ -1,6 +1,6 @@
-package problemsolving.leetcode.kotlin
+package problemsolving.leetcode
 
-class Solution50 {
+class Solution50Kt {
 
     fun myPow(x: Double, n: Int): Double {
         return myPow_3(x, n)
@@ -58,7 +58,7 @@ class Solution50 {
 }
 
 fun main() {
-    val solution50 = Solution50()
+    val solution50 = Solution50Kt()
     var answer: Double
     answer = solution50.myPow(2.00000, 10)
     println("output: $answer\texpected: 1024.00000")

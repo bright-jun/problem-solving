@@ -1,6 +1,6 @@
-package problemsolving.leetcode.kotlin
+package problemsolving.leetcode
 
-class Solution11 {
+class Solution11Kt {
     /**
      * n == height.length
      * 2 <= n <= 10^5
@@ -60,7 +60,7 @@ class Solution11 {
 }
 
 fun main() {
-    val solution11 = Solution11()
+    val solution11 = Solution11Kt()
     var answer: Int
     answer = solution11.maxArea(intArrayOf(1, 8, 6, 2, 5, 4, 8, 3, 7))
     println("output: $answer\texpected: 49")

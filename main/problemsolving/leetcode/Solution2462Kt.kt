@@ -1,6 +1,6 @@
-package problemsolving.leetcode.kotlin
+package problemsolving.leetcode
 
-class Solution2462 {
+class Solution2462Kt {
 
     /**
      * 1 <= costs.length <= 10^5
@@ -34,7 +34,7 @@ class Solution2462 {
 }
 
 fun main() {
-    val solution2462 = Solution2462()
+    val solution2462 = Solution2462Kt()
     var answer: Long
     answer = solution2462.totalCost(intArrayOf(17, 12, 10, 2, 7, 2, 11, 20, 8), 3, 4)
     println("output: $answer\texpected: 11")

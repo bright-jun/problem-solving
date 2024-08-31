@@ -1,6 +1,6 @@
-package problemsolving.leetcode.kotlin
+package problemsolving.leetcode
 
-class Solution2090 {
+class Solution2090Kt {
 
     /**
      * n == nums.length
@@ -46,7 +46,7 @@ class Solution2090 {
 }
 
 fun main() {
-    val solution2090 = Solution2090()
+    val solution2090 = Solution2090Kt()
     var answer: IntArray
     answer = solution2090.getAverages(intArrayOf(7, 4, 3, 9, 1, 8, 5, 2, 6), 3)
     println("output  : ${answer.toList()}\nexpected: ${listOf(-1, -1, -1, 5, 4, 4, -1, -1, -1)}")

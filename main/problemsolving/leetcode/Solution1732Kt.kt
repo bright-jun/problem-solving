@@ -1,6 +1,6 @@
-package problemsolving.leetcode.kotlin
+package problemsolving.leetcode
 
-class Solution1732 {
+class Solution1732Kt {
 
     /**
      * n == gain.length
@@ -28,7 +28,7 @@ class Solution1732 {
 }
 
 fun main() {
-    val solution1732 = Solution1732()
+    val solution1732 = Solution1732Kt()
     var answer: Int
     answer = solution1732.largestAltitude(intArrayOf(-5, 1, 5, 0, -7))
     println("output: $answer\texpected: 1")

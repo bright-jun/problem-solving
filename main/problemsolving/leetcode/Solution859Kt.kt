@@ -1,6 +1,6 @@
-package problemsolving.leetcode.kotlin
+package problemsolving.leetcode
 
-class Solution859 {
+class Solution859Kt {
 
     /**
      * 1 <= s.length, goal.length <= 2 * 10^4
@@ -52,7 +52,7 @@ class Solution859 {
 }
 
 fun main() {
-    val solution859 = Solution859()
+    val solution859 = Solution859Kt()
     var answer: Boolean
     answer = solution859.buddyStrings("ab", "ba")
     println("output: $answer\texpected: true")
