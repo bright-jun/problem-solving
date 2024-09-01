@@ -90,13 +90,4 @@ public class N_Ary_Node {
             return new N_Ary_Node(element, new ArrayList<N_Ary_Node>());
         }
     }
-
-    public static void main(String[] args) {
-        // test
-        N_Ary_Node root;
-        root = N_Ary_Node.generate(new Integer[]{1, null, 3, 2, 4, null, 5, 6});
-        root = N_Ary_Node.generate(new Integer[]{1, null, 2, 3, 4, 5, null, null, 6, 7, null, 8, null, 9, 10, null,
-                null, 11, null, 12, null, 13, null, null, 14});
-        return;
-    }
 }
