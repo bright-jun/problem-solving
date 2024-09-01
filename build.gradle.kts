@@ -5,6 +5,31 @@ plugins {
 group = "problem.solving"
 version = "1.0-SNAPSHOT"
 
+sourceSets {
+    main {
+        java {
+            setSrcDirs(listOf("src/main"))
+        }
+        kotlin {
+            setSrcDirs(listOf("src/main"))
+        }
+        resources {
+            setSrcDirs(listOf("src/main/resources"))
+        }
+    }
+    test {
+        java {
+            setSrcDirs(listOf("src/test"))
+        }
+        kotlin {
+            setSrcDirs(listOf("src/test"))
+        }
+        resources {
+            setSrcDirs(listOf("src/test/resources"))
+        }
+    }
+}
+
 repositories {
     mavenCentral()
 }

@@ -1,12 +1,11 @@
-package datastructure.heap
-
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.shouldBe
 
 class HeapTest : BehaviorSpec({
 
     Given("MaxHeap") {
-        val heap: Heap<Int> = Heap { o1: Int, o2: Int -> o1 - o2 }
+        val heap: _root_ide_package_.datastructure.heap.Heap<Int> =
+            _root_ide_package_.datastructure.heap.Heap { o1: Int, o2: Int -> o1 - o2 }
         And("with increasing Input") {
             val elements = (1..10)
             elements.forEach {
@@ -48,7 +47,8 @@ class HeapTest : BehaviorSpec({
     }
 
     Given("MinHeap") {
-        val heap: Heap<Int> = Heap { o1: Int, o2: Int -> o2 - o1 }
+        val heap: _root_ide_package_.datastructure.heap.Heap<Int> =
+            _root_ide_package_.datastructure.heap.Heap { o1: Int, o2: Int -> o2 - o1 }
         And("with increasing Input") {
             val elements = (1..10)
             elements.forEach {
