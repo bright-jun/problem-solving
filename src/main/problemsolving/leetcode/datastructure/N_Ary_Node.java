@@ -67,8 +67,8 @@ public class N_Ary_Node {
             List<Integer> children = adjacencyLists.poll();
             if (children != null) {
                 now.children = children.stream()
-                        .map(N_Ary_Node::integerToN_Ary_Node)
-                        .collect(Collectors.toList());
+                    .map(N_Ary_Node::integerToN_Ary_Node)
+                    .collect(Collectors.toList());
                 childs.addAll(now.children);
             }
         }

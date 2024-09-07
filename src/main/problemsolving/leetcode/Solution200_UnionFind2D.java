@@ -81,9 +81,9 @@ public class Solution200_UnionFind2D {
         Solution200_UnionFind2D solution200 = new Solution200_UnionFind2D();
 
         System.out.println(solution200.numIslands(new char[][]{{'1', '1', '1', '1', '0'},
-                {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '0', '0', '0'}}));
+            {'1', '1', '0', '1', '0'}, {'1', '1', '0', '0', '0'}, {'0', '0', '0', '0', '0'}}));
         System.out.println(solution200.numIslands(new char[][]{{'1', '1', '0', '0', '0'},
-                {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}}));
+            {'1', '1', '0', '0', '0'}, {'0', '0', '1', '0', '0'}, {'0', '0', '0', '1', '1'}}));
         System.out.println(solution200.numIslands(new char[][]{{'0'}}));
         System.out.println(solution200.numIslands(new char[][]{{'1'}}));
     }

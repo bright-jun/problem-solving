@@ -24,7 +24,6 @@ class Solution1732Kt {
         }
         return largestAltitude
     }
-
 }
 
 fun main() {

@@ -30,9 +30,9 @@ class MyHashMap {
             } else {
                 // overwrite
                 childList.stream()
-                        .filter(p -> p[0] == key)
-                        .findFirst()
-                        .ifPresent(p -> p[1] = value);
+                    .filter(p -> p[0] == key)
+                    .findFirst()
+                    .ifPresent(p -> p[1] = value);
             }
         }
     }
@@ -43,9 +43,9 @@ class MyHashMap {
         if (childList != null) {
             // not normal key, Integer instance representing key
             int[] find = childList.stream()
-                    .filter(p -> p[0] == key)
-                    .findFirst()
-                    .orElse(new int[]{-1, -1});
+                .filter(p -> p[0] == key)
+                .findFirst()
+                .orElse(new int[]{-1, -1});
             return find[1];
         }
         return -1;

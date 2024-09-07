@@ -32,7 +32,7 @@ public class Solution56 {
     public static void main(String[] args) {
         Solution56 solution56 = new Solution56();
         System.out
-                .println(Arrays.toString(solution56.merge(new int[][]{{1, 3}, {2, 6}, {8, 10}, {15, 18}})));
+            .println(Arrays.toString(solution56.merge(new int[][]{{1, 3}, {2, 6}, {8, 10}, {15, 18}})));
         System.out.println(Arrays.toString(solution56.merge(new int[][]{{1, 4}, {4, 5}})));
     }
 }

@@ -46,6 +46,6 @@ public class Solution1423 {
          * 566
          */
         System.out.println(
-                solution1423.maxScore(new int[]{32, 69, 37, 79, 4, 33, 29, 33, 45, 1, 99, 90, 56, 24, 76}, 10));
+            solution1423.maxScore(new int[]{32, 69, 37, 79, 4, 33, 29, 33, 45, 1, 99, 90, 56, 24, 76}, 10));
     }
 }

@@ -29,9 +29,9 @@ public class Solution946 {
     public static void main(String[] args) {
         Solution946 solution946 = new Solution946();
         System.out
-                .println(solution946.validateStackSequences(new int[]{1, 2, 3, 4, 5}, new int[]{4, 5, 3, 2, 1}));
+            .println(solution946.validateStackSequences(new int[]{1, 2, 3, 4, 5}, new int[]{4, 5, 3, 2, 1}));
         System.out
-                .println(solution946.validateStackSequences(new int[]{1, 2, 3, 4, 5}, new int[]{4, 3, 5, 1, 2}));
+            .println(solution946.validateStackSequences(new int[]{1, 2, 3, 4, 5}, new int[]{4, 3, 5, 1, 2}));
         System.out.println(solution946.validateStackSequences(new int[]{1}, new int[]{1}));
         System.out.println(solution946.validateStackSequences(new int[]{1}, new int[]{2}));
         System.out.println(solution946.validateStackSequences(new int[]{2, 0, 3, 1}, new int[]{3, 1, 0, 2}));

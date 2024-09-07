@@ -35,8 +35,8 @@ public class ListNode {
         }
 
         List<ListNode> listNodes = Arrays.stream(elements)
-                .map(ListNode::integerToListNode)
-                .collect(Collectors.toList());
+            .map(ListNode::integerToListNode)
+            .collect(Collectors.toList());
 
         for (int i = 1; i < listNodes.size(); i++) {
             if (listNodes.get(i) != null) {

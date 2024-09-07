@@ -102,7 +102,7 @@ public class Solution1007 {
     public static void main(String[] args) {
         Solution1007 solution1007 = new Solution1007();
         System.out.println(
-                solution1007.minDominoRotations(new int[]{2, 1, 2, 4, 2, 2}, new int[]{5, 2, 6, 2, 3, 2}));
+            solution1007.minDominoRotations(new int[]{2, 1, 2, 4, 2, 2}, new int[]{5, 2, 6, 2, 3, 2}));
         System.out.println(solution1007.minDominoRotations(new int[]{3, 5, 1, 2, 3}, new int[]{3, 6, 3, 3, 4}));
     }
 }

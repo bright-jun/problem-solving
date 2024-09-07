@@ -131,8 +131,8 @@ public class Solution43164 {
     public static void main(String[] args) {
         Solution43164 solution43164 = new Solution43164();
         System.out.println(Arrays.toString(
-                solution43164.solution(new String[][]{{"ICN", "JFK"}, {"HND", "IAD"}, {"JFK", "HND"}})));
+            solution43164.solution(new String[][]{{"ICN", "JFK"}, {"HND", "IAD"}, {"JFK", "HND"}})));
         System.out.println(Arrays.toString(solution43164.solution(new String[][]{{"ICN", "SFO"}, {"ICN", "ATL"},
-                {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL", "SFO"}})));
+            {"SFO", "ATL"}, {"ATL", "ICN"}, {"ATL", "SFO"}})));
     }
 }

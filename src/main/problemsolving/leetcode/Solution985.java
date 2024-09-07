@@ -37,7 +37,7 @@ public class Solution985 {
         Solution985 solution985 = new Solution985();
         int[] answer;
         answer = solution985.sumEvenAfterQueries(new int[]{1, 2, 3, 4},
-                new int[][]{{1, 0}, {-3, 1}, {-4, 0}, {2, 3}});
+            new int[][]{{1, 0}, {-3, 1}, {-4, 0}, {2, 3}});
         answer = solution985.sumEvenAfterQueries(new int[]{1}, new int[][]{{4, 0}});
 
         return;

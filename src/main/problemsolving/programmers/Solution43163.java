@@ -56,9 +56,9 @@ public class Solution43163 {
     public static void main(String[] args) {
         Solution43163 solution43163 = new Solution43163();
         System.out.println(
-                solution43163.solution("hit", "cog", new String[]{"hot", "dot", "dog", "lot", "log", "cog"}));
+            solution43163.solution("hit", "cog", new String[]{"hot", "dot", "dog", "lot", "log", "cog"}));
         System.out.println(
-                solution43163.solution("hit", "cog", new String[]{"hit", "dot", "dog", "lot", "log", "cog"}));
+            solution43163.solution("hit", "cog", new String[]{"hit", "dot", "dog", "lot", "log", "cog"}));
         System.out.println(solution43163.solution("hit", "cog", new String[]{"hot", "dot", "dog", "lot", "log"}));
     }
 }

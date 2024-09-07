@@ -22,7 +22,7 @@ class Solution2462Kt {
             val min =
                 minOf(
                     costs.take(candidates).toSortedSet().first(),
-                    costs.takeLast(candidates).toSortedSet().first()
+                    costs.takeLast(candidates).toSortedSet().first(),
                 )
             answer += min
             costs.remove(min)
@@ -30,7 +30,6 @@ class Solution2462Kt {
 
         return answer;
     }
-
 }
 
 fun main() {
@@ -75,9 +74,9 @@ fun main() {
             44,
             2,
             54,
-            58
-        ), 7, 12
+            58,
+        ),
+        7, 12,
     )
     println("output: $answer\texpected: 95")
-
 }

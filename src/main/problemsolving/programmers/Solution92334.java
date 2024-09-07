@@ -43,8 +43,8 @@ public class Solution92334 {
         Solution92334 solution92334 = new Solution92334();
         int[] answer;
         answer = solution92334.solution(new String[]{"muzi", "frodo", "apeach", "neo"},
-                new String[]{"muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"}, 2);
+            new String[]{"muzi frodo", "apeach frodo", "frodo neo", "muzi neo", "apeach muzi"}, 2);
         answer = solution92334.solution(new String[]{"con", "ryan"},
-                new String[]{"ryan con", "ryan con", "ryan con", "ryan con"}, 2);
+            new String[]{"ryan con", "ryan con", "ryan con", "ryan con"}, 2);
     }
 }

@@ -56,7 +56,7 @@ public class Main2178 {
 
                     // movable && not visited
                     if (next[0] >= 0 && next[0] < n && next[1] >= 0 && next[1] < m && map[next[0]][next[1]] == 1
-                            && !visited[next[0]][next[1]]) {
+                        && !visited[next[0]][next[1]]) {
                         // move
                         dq.add(new int[]{next[0], next[1]});
 //						dq.add(next); // call by value(reference) -> error
