@@ -8,7 +8,7 @@ class Solution2462Kt {
      * 1 <= k, candidates <= costs.length
      */
     fun totalCost(costs: IntArray, k: Int, candidates: Int): Long {
-        return totalCost_1(costs, k, candidates);
+        return totalCost_1(costs, k, candidates)
     }
 
     /**
@@ -28,7 +28,7 @@ class Solution2462Kt {
             costs.remove(min)
         }
 
-        return answer;
+        return answer
     }
 }
 
@@ -76,7 +76,8 @@ fun main() {
             54,
             58,
         ),
-        7, 12,
+        7,
+        12,
     )
     println("output: $answer\texpected: 95")
 }

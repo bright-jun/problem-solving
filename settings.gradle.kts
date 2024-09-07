@@ -1,2 +1,1 @@
 rootProject.name = "problem-solving"
-

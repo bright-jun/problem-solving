@@ -41,6 +41,5 @@ class ListNodeTest : BehaviorSpec(
                 }
             }
         }
-
     },
 )
