@@ -6,12 +6,12 @@ public class Solution135 {
      * ransomNote and magazine consist of lowercase English letters.
      */
     public boolean canConstruct(String ransomNote, String magazine) {
-        return canConstruct1(ransomNote, magazine);
+        return canConstruct2(ransomNote, magazine);
     }
 
     /**
      * Time: O(N)
-     * Space: O(N)
+     * Space: O(1)
      */
     public boolean canConstruct1(String ransomNote, String magazine) {
         if (ransomNote.length() > magazine.length()) {
@@ -37,9 +37,33 @@ public class Solution135 {
         return true;
     }
 
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     */
+    public boolean canConstruct2(String ransomNote, String magazine) {
+        if (ransomNote.length() > magazine.length()) {
+            return false;
+        }
+
+        int[] alphabetCount = new int['z' - 'a' + 1];
+
+        for (char c : magazine.toCharArray()) {
+            alphabetCount[c - 'a']++;
+        }
+        // ransomNote ⊆ magazine
+        for (char c : ransomNote.toCharArray()) {
+            if (--alphabetCount[c - 'a'] < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         Solution135 solution135 = new Solution135();
-        String ransomNote, magazine;
+        String ransomNote;
+        String magazine;
         boolean answer;
         ransomNote = "a";
         magazine = "b";
