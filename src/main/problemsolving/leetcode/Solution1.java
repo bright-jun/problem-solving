@@ -1,47 +1,32 @@
 package problemsolving.leetcode;
 
-import java.util.*;
+import java.util.Arrays;
 
 public class Solution1 {
     /*
-     * 2 <= nums.length <= 10^4 -10^9 <= nums[i] <= 10^9 -10^9 <= target <= 10^9
+     * 2 <= nums.length <= 10^4
+     * -10^9 <= nums[i] <= 10^9
+     * -10^9 <= target <= 10^9
      * Only one valid answer exists.
      */
     public int[] twoSum(int[] nums, int target) {
-        Map<Integer, List<Integer>> hm = new HashMap<Integer, List<Integer>>(); // (value, idxList)
+        return twoSum1(nums, target);
+    }
 
-        // a + b = target
-        // b = target - a
-        for (int i = 0; i < nums.length; i++) {
-            hm.computeIfAbsent(target - nums[i], k -> new ArrayList<Integer>());
-            hm.get(target - nums[i]).add(i);
-            // what's difference between get.add and getOrDefault.add
-//			hm.getOrDefault(target - nums[i], new ArrayList<Integer>()).add(i);
-        }
-
-        int[] answer = new int[2];
-
-        for (int i = 0; i < nums.length; i++) {
-            if (hm.get(nums[i]) == null) {
-                continue;
-            }
-
-            int j = hm.get(nums[i]).get(0);
-            if (i != j) {
-                answer[0] = i;
-                answer[1] = j;
-            } else {
-                if (hm.get(nums[i]).size() > 1) {
-                    j = hm.get(nums[i]).get(1);
-                    answer[0] = i;
-                    answer[1] = j;
-                } else {
-                    continue;
+    /**
+     * Time: O(N^2)
+     * Space: O(1)
+     */
+    public int[] twoSum1(int[] nums, int target) {
+        int n = nums.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
                 }
             }
         }
-
-        return answer;
+        return null;
     }
 
     public static void main(String[] args) {
