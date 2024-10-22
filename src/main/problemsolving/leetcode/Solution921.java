@@ -8,7 +8,7 @@ public class Solution921 {
      * s[i] is either '(' or ')'.
      */
     public int minAddToMakeValid(String s) {
-        return minAddToMakeValid1(s);
+        return minAddToMakeValid2(s);
     }
 
     /**
@@ -34,6 +34,33 @@ public class Solution921 {
             }
         }
         return stack.size();
+    }
+
+    /**
+     * Time: O(N)
+     * Space: O(1)
+     */
+    public int minAddToMakeValid2(String s) {
+        if (s.length() == 0) {
+            return 0;
+        }
+
+        int left = 0;
+        int right = 0;
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') {
+                left++;
+            } else { // c == ')'
+                if (left > 0) {
+                    left--;
+                } else {
+                    right++;
+                }
+            }
+        }
+
+        return left + right;
     }
 
     public static void main(String[] args) {
