@@ -11,8 +11,8 @@ public class Solution957 {
     }
 
     /**
-     * Time: O(8*N) ... TLE
-     * Space: O(8)
+     * Time: O(1)
+     * Space: O(1)
      */
     public int[] prisonAfterNDays_0(int[] cells, int n) {
         /**
@@ -24,9 +24,22 @@ public class Solution957 {
          * Day 5: [0, 1, 1, 1, 0, 1, 0, 0]
          * Day 6: [0, 0, 1, 0, 1, 1, 0, 0]
          * Day 7: [0, 0, 1, 1, 0, 0, 0, 0]
+         * Day 8: [0, 0, 0, 0, 0, 1, 1, 0]
+         * Day 9: [0, 1, 1, 1, 0, 0, 0, 0]
+         * Day 10: [0, 0, 1, 0, 0, 1, 1, 0]
+         * Day 11: [0, 0, 1, 0, 0, 0, 0, 0]
+         * Day 12: [0, 0, 1, 0, 1, 1, 1, 0]
+         * Day 13: [0, 0, 1, 1, 0, 1, 0, 0]
+         * Day 14: [0, 0, 0, 0, 1, 1, 0, 0]
+         * Day 15: [0, 1, 1, 0, 0, 0, 0, 0] ** same with Day 1
          */
+
+        int loop = n % 14;
+        if (loop == 0) {
+            loop = 14; // Day 0 != Day 14, loop can't be 0
+        }
         int[] currentCells = cells;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < loop; i++) {
             int[] nextCells = new int[8];
             for (int j = 0; j < 8; j++) {
                 nextCells[j] = state_0(currentCells, j);
@@ -44,11 +57,10 @@ public class Solution957 {
         return (cells[index - 1] == cells[index + 1]) ? 1 : 0;
     }
 
-
     public static void main(String[] args) {
         Solution957 solution957 = new Solution957();
         int[] answer;
-//        answer = solution957.prisonAfterNDays(new int[]{0, 1, 0, 1, 1, 0, 0, 1}, 100); // [0,0,1,1,0,0,0,0]
+        answer = solution957.prisonAfterNDays(new int[]{0, 1, 0, 1, 1, 0, 0, 1}, 100); // [0,0,1,1,0,0,0,0]
         answer = solution957.prisonAfterNDays(new int[]{1, 0, 0, 1, 0, 0, 1, 0}, 1000000000); // [0,0,1,1,1,1,1,0]
     }
 }
