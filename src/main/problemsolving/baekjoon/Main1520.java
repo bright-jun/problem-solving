@@ -70,6 +70,16 @@ public class Main1520 {
         return AnswerDP[r][c];
     }
 
+    /**
+     * Time: O(4^(M*N)) with Dynamic Programming
+     * Space: O(M*N)
+     */
+    static long findByBfs_2() {
+        // TODO use priority Queue
+        //  https://www.acmicpc.net/board/view/149729
+        return 0L;
+    }
+
     static boolean inMatrix(int r, int c) {
         return r >= 0 && r < M && c >= 0 && c < N;
     }
