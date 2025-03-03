@@ -18,7 +18,8 @@ public class Main1520 {
     static int N;
     static int[][] Map;
     static boolean[][] Visited;
-    static int Answer;
+    static long Answer;
+    static long[][] AnswerDP;
 
     /**
      * Time: O(4^(M*N)) search all possible path ... TLE
@@ -41,13 +42,41 @@ public class Main1520 {
         Visited[r][c] = false;
     }
 
+    /**
+     * Time: O(4^(M*N)) with Dynamic Programming
+     * Space: O(M*N)
+     */
+    static long findByDfs_1(int r, int c) {
+        if (r == M - 1 && c == N - 1) {
+            return AnswerDP[r][c]; // 1
+        }
+
+        Visited[r][c] = true;
+        long tempAnswer = 0;
+        for (int d = 0; d < 4; d++) {
+            int nr = r + Dir[d][0];
+            int nc = c + Dir[d][1];
+            if (inMatrix(nr, nc) && !Visited[nr][nc] && Map[r][c] > Map[nr][nc]) {
+                // memoization
+                if (AnswerDP[nr][nc] == -1) {
+                    AnswerDP[nr][nc] = findByDfs_1(nr, nc);
+                }
+                tempAnswer += AnswerDP[nr][nc];
+            }
+        }
+        AnswerDP[r][c] = tempAnswer;
+        Visited[r][c] = false;
+
+        return AnswerDP[r][c];
+    }
+
     static boolean inMatrix(int r, int c) {
         return r >= 0 && r < M && c >= 0 && c < N;
     }
 
     public static void main(String[] args) throws IOException {
         // read from txt
-        InputStream is = Main1520.class.getClassLoader().getResourceAsStream("baekjoon/1520.txt");
+        InputStream is = Main1520.class.getClassLoader().getResourceAsStream("baekjoon/1520_1.txt");
         System.setIn(is);
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -58,6 +87,13 @@ public class Main1520 {
         Map = new int[M][N];
         Visited = new boolean[M][N];
         Answer = 0;
+        AnswerDP = new long[M][N];
+        for (int i = 0; i < M; i++) {
+            for (int j = 0; j < N; j++) {
+                AnswerDP[i][j] = -1;
+            }
+        }
+        AnswerDP[M - 1][N - 1] = 1;
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < N; j++) {
@@ -65,8 +101,8 @@ public class Main1520 {
             }
         }
 
-        findByDfs_0(0, 0);
+        long answer = findByDfs_1(0, 0);
 
-        System.out.println(Answer);
+        System.out.println(answer);
     }
 }
